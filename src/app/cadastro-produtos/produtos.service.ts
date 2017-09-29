@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core'
-import {Http} from '@angular/http'
+import {Http, Headers, RequestOptions} from '@angular/http'
 
 import {Observable} from 'rxjs/Observable'
 import 'rxjs/add/operator/map'
@@ -28,4 +28,13 @@ export class ProdutosService {
         .catch(ErrorHandler.handleError)
     }
 
+    salvarProduto(produto: Produto): Observable<string> {
+      const headers = new Headers()
+      headers.append('Content-Type', 'application/json')
+      return this.http.post(`${REST_API}/produtos/insere`,
+                            JSON.stringify(produto),
+                            new RequestOptions({headers: headers}))
+                      .map(response=> response.json())
+                      .map(produto => produto.id)
+    }
 }

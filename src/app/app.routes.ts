@@ -6,6 +6,7 @@ import {CadastroClienteComponent} from './cadastro-cliente/cadastro-cliente.comp
 import {CadastroVeiculoComponent} from './cadastro-veiculo/cadastro-veiculo.component'
 import {CadastroServicosComponent} from './cadastro-servicos/cadastro-servicos.component'
 import {CadastroProdutosComponent} from './cadastro-produtos/cadastro-produtos.component'
+import {NovoProdutoComponent} from './novo-produto/novo-produto.component'
 
 
 import {NotFoundComponent} from './not-found/not-found.component'
@@ -19,6 +20,7 @@ export const ROUTES: Routes = [
   {path: 'servicos', component: CadastroServicosComponent},
   {path: 'produtos', component: CadastroProdutosComponent},
   {path: 'produtos/:id', component: CadastroProdutosComponent},
+  {path: 'novoProduto', component: NovoProdutoComponent},
   {path: 'about', loadChildren: './about/about.module#AboutModule'},
   {path: '**', component: NotFoundComponent}
 ]

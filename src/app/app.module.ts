@@ -21,6 +21,7 @@ import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.co
 import { CadastroServicosComponent } from './cadastro-servicos/cadastro-servicos.component';
 import { CadastroProdutosComponent } from './cadastro-produtos/cadastro-produtos.component';
 import { ProdutoComponent } from './cadastro-produtos/produto/produto.component';
+import { NovoProdutoComponent } from './novo-produto/novo-produto.component';
 
 @NgModule({
   declarations: [
@@ -34,14 +35,15 @@ import { ProdutoComponent } from './cadastro-produtos/produto/produto.component'
     CadastroUsuarioComponent,
     CadastroServicosComponent,
     CadastroProdutosComponent,
-    ProdutoComponent
+    ProdutoComponent,
+    NovoProdutoComponent
    ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
     SharedModule.forRoot(),
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES,{preloadingStrategy: PreloadAllModules})
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]
