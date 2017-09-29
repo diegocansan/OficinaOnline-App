@@ -1,0 +1,7 @@
+<a [routerLink]="['/produtos', produto.id]">
+  <div class="place-info-box" [@produtoAppeared]="produtoState">
+      <span class="place-info-box-text">Nome: {{produto.nome}}</span>
+      <span class="place-info-box-text">Valor: {{produto.valor}}</span>
+    <!-- /.info-box-content -->
+  </div>
+</a>
