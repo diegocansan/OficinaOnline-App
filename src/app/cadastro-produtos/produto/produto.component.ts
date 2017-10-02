@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {trigger, state, style, transition, animate} from '@angular/animations'
 import {Produto} from './produto.model'
 
+
 @Component({
   selector: 'oo-produto',
   templateUrl: './produto.component.html',
@@ -24,6 +25,10 @@ export class ProdutoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  removeProduto (prdouto){
+    console.log('TESTE');
   }
 
 }

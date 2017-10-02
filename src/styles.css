@@ -22,6 +22,14 @@ body {
   border-radius: 2px;
   margin-bottom: 15px;
 }
+
+.place-info-box > button{
+    float: right;
+    border-top: 1px solid #ddd;
+    margin-top: -35px;
+    display: block;
+}
+
 .place-info-box small {
   font-size: 14px;
 }
@@ -75,8 +83,6 @@ body {
   text-transform: uppercase;
   width: 80%;
   float: left
-}
-.place-info-box-text {
 }
 
 .place-info-box-star {
