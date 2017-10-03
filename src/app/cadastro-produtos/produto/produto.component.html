@@ -1,12 +1,10 @@
-  <a [routerLink]="['/produtos', produto.id]">
-  <div class="place-info-box" [@produtoAppeared]="produtoState">
 
+  <div class="place-info-box" [@produtoAppeared]="produtoState">
+    <a [routerLink]="['/novoProduto', produto.id]">
       <div>
         <span class="place-info-box-text">Nome: {{produto.nome}}</span>
         <span class="place-info-box-text">Valor: {{produto.valor}}</span>
       </div>
-
-      <button class="btn btn-danger fa fa-times" aria-hidden="true" (click)="removeProduto(produto)"> </button>
-
+    </a>
+    <button class="btn btn-danger fa fa-times" aria-hidden="true" (click)="removeProduto(produto)"> </button>
   </div>
-  </a>

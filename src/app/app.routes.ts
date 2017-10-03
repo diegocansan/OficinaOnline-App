@@ -19,7 +19,7 @@ export const ROUTES: Routes = [
   {path: 'veiculos', component: CadastroVeiculoComponent},
   {path: 'servicos', component: CadastroServicosComponent},
   {path: 'produtos', component: CadastroProdutosComponent},
-  {path: 'produtos/:id', component: CadastroProdutosComponent},
+  {path: 'novoProduto/:id', component: NovoProdutoComponent},
   {path: 'novoProduto', component: NovoProdutoComponent},
   {path: 'about', loadChildren: './about/about.module#AboutModule'},
   {path: '**', component: NotFoundComponent}

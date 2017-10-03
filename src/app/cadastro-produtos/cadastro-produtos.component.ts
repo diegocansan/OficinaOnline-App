@@ -60,13 +60,19 @@ export class CadastroProdutosComponent implements OnInit {
       .catch(error=>Observable.from([])))
       .subscribe(produtos => this.produtos = produtos)
 
-    this.produtosService.produtos()
-      .subscribe(produtos => this.produtos = produtos)
-
+    this.atualizaProdutos()
   }
 
   toggleSearch(){
     this.searchBarState = this.searchBarState === 'hidden' ? 'visible' : 'hidden'
   }
-  
+
+  onDelete(){
+    this.atualizaProdutos();
+  }
+
+  atualizaProdutos(){
+    this.produtosService.produtos()
+      .subscribe(produtos => this.produtos = produtos)
+  }
 }

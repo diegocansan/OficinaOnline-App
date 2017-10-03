@@ -37,4 +37,21 @@ export class ProdutosService {
                       .map(response=> response.json())
                       .map(produto => produto.id)
     }
+
+    alterarProduto(produto: Produto):Observable<Boolean>{
+      const headers = new Headers()
+      headers.append('Content-Type', 'application/json')
+      return this.http.put(`${REST_API}/produtos/altera/${produto.id}`,
+                            JSON.stringify(produto),
+                            new RequestOptions({headers: headers}))
+                      .map(response => response.ok)
+    }
+
+    removeProduto(produto: Produto):Observable<Boolean>{
+      const headers = new Headers()
+      headers.append('Content-Type', 'application/json')
+      return this.http.delete(`${REST_API}/produtos/delete/${produto.id}`,
+                              new RequestOptions({headers: headers}))
+                              .map(response => response.ok)
+    }
 }
