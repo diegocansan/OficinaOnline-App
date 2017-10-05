@@ -17,9 +17,15 @@ export class ProdutosService {
     constructor(private http: Http){}
 
     produtos(search?: string): Observable<Produto[]> {
-      return this.http.get(`${REST_API}/produtos`, {params: {q: search}})
-        .map(response => response.json())
-        .catch(ErrorHandler.handleError)
+      if(!search){
+        return this.http.get(`${REST_API}/produtos`)
+                        .map(response => response.json())
+                        .catch(ErrorHandler.handleError)
+      }else{
+        return this.http.get(`${REST_API}/produtos/pornome/%${search.toString()}%`)
+                        .map(response => response.json())
+                        .catch(ErrorHandler.handleError)
+      }
     }
 
     produtoById(id: string): Observable<Produto>{
