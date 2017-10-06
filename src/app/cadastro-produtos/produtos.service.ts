@@ -22,7 +22,7 @@ export class ProdutosService {
                         .map(response => response.json())
                         .catch(ErrorHandler.handleError)
       }else{
-        return this.http.get(`${REST_API}/produtos/pornome/%${search.toString()}%`)
+        return this.http.get(`${REST_API}/produtos/pornome/${search.toString()}`)
                         .map(response => response.json())
                         .catch(ErrorHandler.handleError)
       }
