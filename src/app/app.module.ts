@@ -15,13 +15,12 @@ import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FooterComponent } from './footer/footer.component';
-import { CadastroVeiculoComponent } from './cadastro-veiculo/cadastro-veiculo.component';
-import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
-import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
-import { CadastroServicosComponent } from './cadastro-servicos/cadastro-servicos.component';
 import { CadastroProdutosComponent } from './cadastro-produtos/cadastro-produtos.component';
 import { ProdutoComponent } from './cadastro-produtos/produto/produto.component';
 import { NovoProdutoComponent } from './novo-produto/novo-produto.component';
+import { ServicosComponent } from './servicos/servicos.component';
+import { ServicoComponent } from './servicos/servico/servico.component';
+import { CadastroServicoComponent } from './servicos/cadastro-servico/cadastro-servico.component';
 
 @NgModule({
   declarations: [
@@ -30,13 +29,12 @@ import { NovoProdutoComponent } from './novo-produto/novo-produto.component';
     HomeComponent,
     NotFoundComponent,
     FooterComponent,
-    CadastroVeiculoComponent,
-    CadastroClienteComponent,
-    CadastroUsuarioComponent,
-    CadastroServicosComponent,
     CadastroProdutosComponent,
     ProdutoComponent,
-    NovoProdutoComponent
+    NovoProdutoComponent,
+    ServicosComponent,
+    ServicoComponent,
+    CadastroServicoComponent
    ],
   imports: [
     BrowserModule,

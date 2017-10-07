@@ -2,14 +2,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {Router} from '@angular/router'
 import {trigger, state, style, transition, animate} from '@angular/animations'
 import {NotificationService} from '../../shared/messages/notification.service'
-import {Produto} from './produto.model'
-import {ProdutosService} from '../produtos.service'
+import {Servico} from './servico.model'
+import {ServicosService} from '../servicos.service'
 
 @Component({
-  selector: 'oo-produto',
-  templateUrl: './produto.component.html',
+  selector: 'oo-servico',
+  templateUrl: './servico.component.html',
   animations: [
-    trigger('produtoAppeared', [
+    trigger('servicoAppeared', [
       state('ready', style({opacity: 1})),
       transition('void => ready', [
         style({opacity: 0, transform: 'translate(-30px, -10px)'}),
@@ -18,31 +18,30 @@ import {ProdutosService} from '../produtos.service'
     ])
   ]
 })
-export class ProdutoComponent implements OnInit {
+export class ServicoComponent implements OnInit {
 
-  produtoState = 'ready'
+  servicoState = 'ready'
 
-  @Input() produto: Produto
+  @Input() servico: Servico
   @Output() deletado: EventEmitter<any> = new EventEmitter();
 
   constructor(private router: Router,
-              private produtosService: ProdutosService,
+              private servicosService: ServicosService,
               private notificationService: NotificationService) {}
-
-
+              
   ngOnInit() {
   }
 
-  removeProduto(produto: Produto)
+  remove(servico: Servico)
   {
-    this.produtosService.removeProduto(produto)
+    this.servicosService.remover(servico)
       .subscribe( (retorno: boolean) => {
         if(retorno){
           this.deletado.emit(null)
-          this.notificationService.notify(`Produto removido!`)
+          this.notificationService.notify(`Serviço removido!`)
         }
         else
-          this.notificationService.notify(`Erro ao remover produto!`)
+          this.notificationService.notify(`Erro ao remover serviço!`)
 
     })
   }

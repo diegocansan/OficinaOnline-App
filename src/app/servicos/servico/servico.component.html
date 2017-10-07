@@ -1,0 +1,10 @@
+
+  <div class="place-info-box" [@servicoAppeared]="servicoState">
+    <a [routerLink]="['/mantemServico', servico.id]">
+      <div>
+        <span class="place-info-box-text">Nome: {{servico.nome}}</span>
+        <span class="place-info-box-text">Valor: {{servico.valor}}</span>
+      </div>
+    </a>
+    <button class="btn btn-danger fa fa-times" aria-hidden="true" (click)="remove(servico)"> </button>
+  </div>

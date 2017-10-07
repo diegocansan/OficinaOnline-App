@@ -1,0 +1,35 @@
+<section class="content-header">
+</section>
+
+<section class="content">
+  <section class="invoice">
+    <form [formGroup]="servicoForm" novalidate>
+      <div class="row">
+        <div class="col-xs-12">
+          <p class="lead">Cadastro de Servico</p>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <oo-input-container errorMessage="Campo obrigatório" label="Nome">
+            <input class="form-control" formControlName="nome" placeholder="Nome do Serviço" autocomplete="off" >
+          </oo-input-container>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+          <oo-input-container errorMessage="Obrigatório e somente números" label="Valor R$">
+            <input type="text" class="form-control" formControlName="valor" placeholder="Valor" autocomplete="off">
+          </oo-input-container>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </form>
+    <div class="row">
+      <div class="col-lg-12 col-xs-12 text-center">
+        <button (click)="btnSalvar(servicoForm.value)" class="btn btn-success"
+          [disabled]="!servicoForm.valid">
+            <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;Salvar
+        </button>
+      </div>
+    </div>
+  </section>
+</section>
+<!-- FIM DO CONTEUDO-->
