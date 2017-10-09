@@ -21,6 +21,9 @@ import { NovoProdutoComponent } from './novo-produto/novo-produto.component';
 import { ServicosComponent } from './servicos/servicos.component';
 import { ServicoComponent } from './servicos/servico/servico.component';
 import { CadastroServicoComponent } from './servicos/cadastro-servico/cadastro-servico.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { UsuarioComponent } from './usuarios/usuario/usuario.component';
+import { CadastroUsuarioComponent } from './usuarios/cadastro-usuario/cadastro-usuario.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { CadastroServicoComponent } from './servicos/cadastro-servico/cadastro-s
     NovoProdutoComponent,
     ServicosComponent,
     ServicoComponent,
-    CadastroServicoComponent
+    CadastroServicoComponent,
+    UsuariosComponent,
+    UsuarioComponent,
+    CadastroUsuarioComponent
    ],
   imports: [
     BrowserModule,
