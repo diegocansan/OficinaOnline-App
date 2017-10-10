@@ -1,13 +1,15 @@
 import {Routes} from '@angular/router'
 
 import {HomeComponent} from './home/home.component'
-import {UsuariosComponent} from './usuarios/usuarios.component'
+
 import {CadastroProdutosComponent} from './cadastro-produtos/cadastro-produtos.component'
 import {NovoProdutoComponent} from './novo-produto/novo-produto.component'
 
 import {ServicosComponent} from './servicos/servicos.component'
 import {CadastroServicoComponent} from './servicos/cadastro-servico/cadastro-servico.component'
 
+import {UsuariosComponent} from './usuarios/usuarios.component'
+import {CadastroUsuarioComponent} from './usuarios/cadastro-usuario/cadastro-usuario.component'
 
 import {NotFoundComponent} from './not-found/not-found.component'
 
@@ -17,8 +19,8 @@ export const ROUTES: Routes = [
   {path: '', component: HomeComponent},
 
   {path: 'usuarios', component: UsuariosComponent},
-  {path: 'mantemUsuarios', component: UsuariosComponent},
-  {path: 'mantemUsuarios/:id', component: UsuariosComponent},
+  {path: 'mantemUsuario', component: CadastroUsuarioComponent},
+  {path: 'mantemUsuario/:id', component: CadastroUsuarioComponent},
 
   {path: 'produtos', component: CadastroProdutosComponent},
   {path: 'novoProduto/:id', component: NovoProdutoComponent},

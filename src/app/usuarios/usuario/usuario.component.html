@@ -1,3 +1,8 @@
-<p>
-  usuario works!
-</p>
+<div class="place-info-box" [@usuarioAppeared]="usuarioState">
+  <a [routerLink]="['/mantemUsuario', usuario.id]">
+    <div>
+      <span class="place-info-box-text">Login: {{usuario.login}} </span>
+    </div>
+  </a>
+  <button class="btn btn-danger fa fa-times" aria-hidden="true" (click)="remove(usuario)"> </button>
+</div>

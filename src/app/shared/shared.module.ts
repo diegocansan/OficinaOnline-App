@@ -8,6 +8,7 @@ import {RadioComponent} from './radio/radio.component'
 
 import {ProdutosService} from '../cadastro-produtos/produtos.service'
 import {ServicosService} from '../servicos/servicos.service'
+import {UsuariosService} from '../usuarios/usuarios.service'
 import {SnackbarComponent} from './messages/snackbar/snackbar.component';
 import {NotificationService} from './messages/notification.service'
 
@@ -20,7 +21,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers:[ProdutosService,ServicosService,NotificationService]
+      providers:[ProdutosService,ServicosService,UsuariosService,NotificationService]
     }
   }
 }

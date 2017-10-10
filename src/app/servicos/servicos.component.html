@@ -32,7 +32,7 @@
                 <div *ngFor="let servico of servicos" class="col-sm-6 col-xs-12">
                     <oo-servico [servico]="servico" (deletado)="onDelete($event)"></oo-servico>
                 </div>
-                <div *ngIf="servico?.length === 0" class="col-xs-12">
+                <div *ngIf="servicos?.length === 0" class="col-xs-12">
                   <p class="lead text-center">
                     Não foram encontrados serviços.
                   </p>
