@@ -17,7 +17,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { FooterComponent } from './footer/footer.component';
 import { CadastroProdutosComponent } from './cadastro-produtos/cadastro-produtos.component';
 import { ProdutoComponent } from './cadastro-produtos/produto/produto.component';
-import { NovoProdutoComponent } from './novo-produto/novo-produto.component';
+import { NovoProdutoComponent } from './cadastro-produtos/novo-produto/novo-produto.component';
 import { ServicosComponent } from './servicos/servicos.component';
 import { ServicoComponent } from './servicos/servico/servico.component';
 import { CadastroServicoComponent } from './servicos/cadastro-servico/cadastro-servico.component';

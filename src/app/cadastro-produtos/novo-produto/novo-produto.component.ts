@@ -3,9 +3,9 @@ import {FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/form
 
 import {Router, ActivatedRoute} from '@angular/router'
 
-import { Produto } from  '../cadastro-produtos/produto/produto.model'
-import { ProdutosService } from  '../cadastro-produtos/produtos.service'
-import {NotificationService} from '../shared/messages/notification.service'
+import { Produto } from  '../../cadastro-produtos/produto/produto.model'
+import { ProdutosService } from  '../../cadastro-produtos/produtos.service'
+import {NotificationService} from '../../shared/messages/notification.service'
 
 @Component({
   selector: 'oo-novo-produto',

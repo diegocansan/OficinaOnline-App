@@ -3,7 +3,7 @@ import {Routes} from '@angular/router'
 import {HomeComponent} from './home/home.component'
 
 import {CadastroProdutosComponent} from './cadastro-produtos/cadastro-produtos.component'
-import {NovoProdutoComponent} from './novo-produto/novo-produto.component'
+import {NovoProdutoComponent} from './cadastro-produtos/novo-produto/novo-produto.component'
 
 import {ServicosComponent} from './servicos/servicos.component'
 import {CadastroServicoComponent} from './servicos/cadastro-servico/cadastro-servico.component'
