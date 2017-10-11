@@ -11,6 +11,12 @@ import {CadastroServicoComponent} from './servicos/cadastro-servico/cadastro-ser
 import {UsuariosComponent} from './usuarios/usuarios.component'
 import {CadastroUsuarioComponent} from './usuarios/cadastro-usuario/cadastro-usuario.component'
 
+import {ClientesComponent} from './clientes/clientes.component'
+import {CadastroClienteComponent} from './clientes/cadastro-cliente/cadastro-cliente.component'
+
+import {VeiculosComponent} from './veiculos/veiculos.component'
+import {CadastroVeiculoComponent} from './veiculos/cadastro-veiculo/cadastro-veiculo.component'
+
 import {NotFoundComponent} from './not-found/not-found.component'
 
 
@@ -29,6 +35,14 @@ export const ROUTES: Routes = [
   {path: 'servicos', component: ServicosComponent},
   {path: 'mantemServico', component: CadastroServicoComponent},
   {path: 'mantemServico/:id', component: CadastroServicoComponent},
+
+  {path: 'clientes', component: ClientesComponent},
+  {path: 'mantemCliente', component: CadastroClienteComponent},
+  {path: 'mantemCliente/:id', component: CadastroClienteComponent},
+
+  {path: 'veiculos', component: VeiculosComponent},
+  {path: 'mantemveiculo', component: CadastroVeiculoComponent},
+  {path: 'mantemveiculo/:id', component: CadastroVeiculoComponent},
 
   {path: 'about', loadChildren: './about/about.module#AboutModule'},
   {path: '**', component: NotFoundComponent}

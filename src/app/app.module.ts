@@ -24,6 +24,12 @@ import { CadastroServicoComponent } from './servicos/cadastro-servico/cadastro-s
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { UsuarioComponent } from './usuarios/usuario/usuario.component';
 import { CadastroUsuarioComponent } from './usuarios/cadastro-usuario/cadastro-usuario.component';
+import { ClientesComponent } from './clientes/clientes.component';
+import { VeiculosComponent } from './veiculos/veiculos.component';
+import { VeiculoComponent } from './veiculos/veiculo/veiculo.component';
+import { ClienteComponent } from './clientes/cliente/cliente.component';
+import { CadastroClienteComponent } from './clientes/cadastro-cliente/cadastro-cliente.component';
+import { CadastroVeiculoComponent } from './veiculos/cadastro-veiculo/cadastro-veiculo.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +46,13 @@ import { CadastroUsuarioComponent } from './usuarios/cadastro-usuario/cadastro-u
     CadastroServicoComponent,
     UsuariosComponent,
     UsuarioComponent,
-    CadastroUsuarioComponent
+    CadastroUsuarioComponent,
+    ClientesComponent,
+    VeiculosComponent,
+    VeiculoComponent,
+    ClienteComponent,
+    CadastroClienteComponent,
+    CadastroVeiculoComponent
    ],
   imports: [
     BrowserModule,

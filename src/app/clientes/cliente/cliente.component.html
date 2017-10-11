@@ -1,0 +1,11 @@
+<div class="place-info-box" [@clienteAppeared]="clienteState">
+  <a [routerLink]="['/mantemCliente', cliente.id]">
+    <div>
+      <span class="place-info-box-text">Nome: {{cliente.nome}}</span>
+      <span class="place-info-box-text">CPF: {{cliente.cpf}}</span>
+      <span class="place-info-box-text">Email: {{cliente.email}}</span>
+      <span class="place-info-box-text">Fone: {{cliente.telefone}}</span>
+    </div>
+  </a>
+  <button class="btn btn-danger fa fa-times" aria-hidden="true" (click)="remove(cliente)"> </button>
+</div>
