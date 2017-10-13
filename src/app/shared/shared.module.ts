@@ -5,11 +5,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {InputComponent} from './input/input.component'
 import {RadioComponent} from './radio/radio.component'
 
-
 import {ProdutosService} from '../cadastro-produtos/produtos.service'
 import {ServicosService} from '../servicos/servicos.service'
 import {UsuariosService} from '../usuarios/usuarios.service'
 import {ClientesService} from '../clientes/clientes.service'
+import {VeiculosService} from '../veiculos/veiculos.service'
 import {SnackbarComponent} from './messages/snackbar/snackbar.component';
 import {NotificationService} from './messages/notification.service'
 
@@ -22,7 +22,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers:[ProdutosService,ServicosService,UsuariosService,ClientesService,NotificationService]
+      providers:[ProdutosService,ServicosService,UsuariosService,ClientesService,VeiculosService,NotificationService]
     }
   }
 }

@@ -1,3 +1,50 @@
-<p>
-  cadastro-veiculo works!
-</p>
+<section class="content-header">
+</section>
+
+<section class="content">
+  <section class="invoice">
+    <form [formGroup]="veiculoForm" novalidate>
+      <div class="row">
+        <div class="col-xs-12">
+          <p class="lead">Cadastro de Veículo</p>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <oo-input-container errorMessage="Placa Obrigatória, somente números!" label="Placa">
+            <input class="form-control" formControlName="placa" placeholder="Placa" autocomplete="off" >
+          </oo-input-container>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+          <oo-input-container errorMessage="Obrigatório!" label="Fabricante">
+            <input type="text" class="form-control" formControlName="fabricante" placeholder="Fabricante" autocomplete="off">
+          </oo-input-container>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+          <oo-input-container errorMessage="Obrigatório!" label="Modelo">
+            <input type="text" class="form-control" formControlName="modelo" placeholder="Modelo" autocomplete="off">
+          </oo-input-container>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+          <oo-input-container errorMessage="Obrigatório!" label="Ano">
+            <input type="text" class="form-control" formControlName="ano" placeholder="Ano" autocomplete="off">
+          </oo-input-container>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+          <oo-input-container errorMessage="Obrigatório" label="Cor">
+            <input type="text" class="form-control" formControlName="cor" placeholder="Cor" autocomplete="off">
+          </oo-input-container>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </form>
+    <div class="row">
+      <div class="col-lg-12 col-xs-12 text-center">
+        <button (click)="btnSalvar(veiculoForm.value)" class="btn btn-success"
+          [disabled]="!veiculoForm.valid">
+            <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;Salvar
+        </button>
+      </div>
+    </div>
+  </section>
+</section>
+<!-- FIM DO CONTEUDO-->

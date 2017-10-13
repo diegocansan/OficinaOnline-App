@@ -18,6 +18,7 @@ import {UsuariosService} from '../usuarios.service'
     ])
   ]
 })
+
 export class UsuarioComponent implements OnInit {
 
   usuarioState = 'ready'

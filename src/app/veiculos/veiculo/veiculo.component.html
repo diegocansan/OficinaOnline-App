@@ -1,3 +1,11 @@
-<p>
-  veiculo works!
-</p>
+<div class="place-info-box" [@veiculoAppeared]="veiculoState">
+  <a [routerLink]="['/mantemVeiculo', veiculo.id]">
+    <div>
+      <span class="place-info-box-text">Placa: {{veiculo.placa}} </span>
+      <span class="place-info-box-text">Fabricante: {{veiculo.fabricante}} </span>
+      <span class="place-info-box-text">Modelo: {{veiculo.modelo}} </span>
+      <span class="place-info-box-text">Ano: {{veiculo.ano}} </span>
+    </div>
+  </a>
+  <button class="btn btn-danger fa fa-times" aria-hidden="true" (click)="remove(veiculo)"> </button>
+</div>

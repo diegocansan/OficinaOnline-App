@@ -41,8 +41,8 @@ export const ROUTES: Routes = [
   {path: 'mantemCliente/:id', component: CadastroClienteComponent},
 
   {path: 'veiculos', component: VeiculosComponent},
-  {path: 'mantemveiculo', component: CadastroVeiculoComponent},
-  {path: 'mantemveiculo/:id', component: CadastroVeiculoComponent},
+  {path: 'mantemVeiculo', component: CadastroVeiculoComponent},
+  {path: 'mantemVeiculo/:id', component: CadastroVeiculoComponent},
 
   {path: 'about', loadChildren: './about/about.module#AboutModule'},
   {path: '**', component: NotFoundComponent}
