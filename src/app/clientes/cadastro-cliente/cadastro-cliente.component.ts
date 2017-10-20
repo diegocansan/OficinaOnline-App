@@ -1,11 +1,13 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms'
+import { DialogService } from "ng2-bootstrap-modal";
 
 import {Router, ActivatedRoute} from '@angular/router'
 
 import {Cliente} from  '../cliente/cliente.model'
 import {ClientesService} from  '../clientes.service'
 import {NotificationService} from '../../shared/messages/notification.service'
+import {ConfirmModalComponent} from '../../shared/confirm-modal/confirm-modal.component'
 
 @Component({
   selector: 'oo-cadastro-cliente',
@@ -19,7 +21,8 @@ export class CadastroClienteComponent implements OnInit {
   constructor(private clientesService: ClientesService,
               private notificationService: NotificationService,
               private router: Router, private route : ActivatedRoute,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private dialogService:DialogService) { }
 
   ngOnInit() {
     this.clienteForm = this.formBuilder.group({
@@ -73,4 +76,17 @@ export class CadastroClienteComponent implements OnInit {
         this.notificationService.notify(`Cliente alterado!`)
     })
   }
+
+  showModal() {
+      this.dialogService.addDialog(ConfirmModalComponent, {
+        title:'Confirmation',
+        message:'Bla bla confirm some action?'})
+        .subscribe((isConfirmed)=>{
+            if(isConfirmed)
+              console.log('BOTAO OK')
+            else
+              console.log('CANCELADO')
+      });
+    }
+
 }

@@ -4,6 +4,8 @@ import {trigger, state, style, transition, animate} from '@angular/animations'
 import {NotificationService} from '../../shared/messages/notification.service'
 import {Veiculo} from './veiculo.model'
 import {VeiculosService} from '../veiculos.service'
+import {ConfirmModalComponent} from '../../shared/confirm-modal/confirm-modal.component'
+import { DialogService } from "ng2-bootstrap-modal";
 
 @Component({
   selector: 'oo-veiculo',
@@ -27,7 +29,8 @@ export class VeiculoComponent implements OnInit {
 
   constructor(private router: Router,
               private veiculosService: VeiculosService,
-              private notificationService: NotificationService) {}
+              private notificationService: NotificationService,
+              private dialogService: DialogService) {}
 
   ngOnInit() {
   }
@@ -45,5 +48,15 @@ export class VeiculoComponent implements OnInit {
 
     })
   }
+
+  showModal(veiculo: Veiculo) {
+      this.dialogService.addDialog(ConfirmModalComponent, {
+        title:'Excluir Veículo!',
+        message:`Deseja realmente excluir o veículo com placa: ${veiculo.placa}?`})
+        .subscribe((isConfirmed)=>{
+            if(isConfirmed)
+              this.remove(veiculo)
+      });
+    }
 
 }

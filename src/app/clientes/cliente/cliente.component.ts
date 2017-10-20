@@ -4,6 +4,8 @@ import {trigger, state, style, transition, animate} from '@angular/animations'
 import {NotificationService} from '../../shared/messages/notification.service'
 import {Cliente} from './cliente.model'
 import {ClientesService} from '../clientes.service'
+import {ConfirmModalComponent} from '../../shared/confirm-modal/confirm-modal.component'
+import { DialogService } from "ng2-bootstrap-modal";
 
 
 @Component({
@@ -29,7 +31,8 @@ export class ClienteComponent implements OnInit {
 
   constructor(private router: Router,
               private clientesService: ClientesService,
-              private notificationService: NotificationService) {}
+              private notificationService: NotificationService,
+              private dialogService: DialogService) {}
 
   ngOnInit() {
   }
@@ -48,5 +51,15 @@ export class ClienteComponent implements OnInit {
 
     })
   }
+
+  showModal(cliente: Cliente) {
+      this.dialogService.addDialog(ConfirmModalComponent, {
+        title:'Excluir Cliente!',
+        message:`Deseja realmente excluir o cliente: ${cliente.nome}?`})
+        .subscribe((isConfirmed)=>{
+            if(isConfirmed)
+              this.remove(cliente)
+      });
+    }
 
 }

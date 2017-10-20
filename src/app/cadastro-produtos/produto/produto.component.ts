@@ -4,6 +4,8 @@ import {trigger, state, style, transition, animate} from '@angular/animations'
 import {NotificationService} from '../../shared/messages/notification.service'
 import {Produto} from './produto.model'
 import {ProdutosService} from '../produtos.service'
+import {ConfirmModalComponent} from '../../shared/confirm-modal/confirm-modal.component'
+import { DialogService } from "ng2-bootstrap-modal";
 
 @Component({
   selector: 'oo-produto',
@@ -27,7 +29,8 @@ export class ProdutoComponent implements OnInit {
 
   constructor(private router: Router,
               private produtosService: ProdutosService,
-              private notificationService: NotificationService) {}
+              private notificationService: NotificationService,
+              private dialogService:DialogService) {}
 
 
   ngOnInit() {
@@ -47,4 +50,14 @@ export class ProdutoComponent implements OnInit {
     })
   }
 
+
+  showModal(produto: Produto) {
+      this.dialogService.addDialog(ConfirmModalComponent, {
+        title:'Excluir produto',
+        message:`Deseja realmente excluir o produto: ${produto.nome}?`})
+        .subscribe((isConfirmed)=>{
+            if(isConfirmed)
+              this.removeProduto(produto)
+      });
+    }
 }

@@ -5,16 +5,18 @@ import { RouterModule, PreloadAllModules } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { LocationStrategy, HashLocationStrategy } from '@angular/common'
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 
 import { ROUTES } from './app.routes'
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FooterComponent } from './footer/footer.component';
+
+
 import { CadastroProdutosComponent } from './cadastro-produtos/cadastro-produtos.component';
 import { ProdutoComponent } from './cadastro-produtos/produto/produto.component';
 import { NovoProdutoComponent } from './cadastro-produtos/novo-produto/novo-produto.component';
@@ -58,6 +60,7 @@ import { CadastroVeiculoComponent } from './veiculos/cadastro-veiculo/cadastro-v
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
+    BootstrapModalModule,
     SharedModule.forRoot(),
     RouterModule.forRoot(ROUTES,{preloadingStrategy: PreloadAllModules})
   ],

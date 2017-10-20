@@ -4,6 +4,9 @@ import {trigger, state, style, transition, animate} from '@angular/animations'
 import {NotificationService} from '../../shared/messages/notification.service'
 import {Usuario} from './usuario.model'
 import {UsuariosService} from '../usuarios.service'
+import {ConfirmModalComponent} from '../../shared/confirm-modal/confirm-modal.component'
+import { DialogService } from "ng2-bootstrap-modal";
+
 
 @Component({
   selector: 'oo-usuario',
@@ -28,7 +31,8 @@ export class UsuarioComponent implements OnInit {
 
   constructor(private router: Router,
               private usuariosService: UsuariosService,
-              private notificationService: NotificationService) {}
+              private notificationService: NotificationService,
+              private dialogService: DialogService) {}
 
   ngOnInit() {
   }
@@ -46,5 +50,14 @@ export class UsuarioComponent implements OnInit {
 
     })
   }
+  showModal(usuario: Usuario) {
+      this.dialogService.addDialog(ConfirmModalComponent, {
+        title:'Excluir Usuário!',
+        message:`Deseja realmente excluir o usuário: ${usuario.login}?`})
+        .subscribe((isConfirmed)=>{
+            if(isConfirmed)
+              this.remove(usuario)
+      });
+    }
 
 }
