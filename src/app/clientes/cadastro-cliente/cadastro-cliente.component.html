@@ -40,13 +40,17 @@
         </button>
       </div>
     </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <button class="btn btn-success" (click)=showModal()><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Veiculo</button>
+      </div>
+    </div>
+    <div class="row" *ngFor="let veiculo of cliente?.veiculos">
+      <div class="place-info-box">
+        <span class="place-info-box-text">ID - {{veiculo.id}} - {{veiculo.placa}} - {{veiculo.modelo}}</span>
+        <button class="btn btn-danger fa fa-times" aria-hidden="true" (click)="showModalVeiculo(veiculo)"> </button>
+      </div>
+    </div>
   </section>
 </section>
-<div class="container" >
-  <div class="row">
-    <div class="col-sm-4">
-      <button class="btn btn-success" (click)=showModal()>Veiculo</button>
-    </div>
-  </div>
-</div>
 <!-- FIM DO CONTEUDO-->

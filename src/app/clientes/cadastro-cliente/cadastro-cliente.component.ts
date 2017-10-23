@@ -9,6 +9,8 @@ import {ClientesService} from  '../clientes.service'
 import {NotificationService} from '../../shared/messages/notification.service'
 import {ConfirmModalComponent} from '../../shared/confirm-modal/confirm-modal.component'
 
+import {Veiculo} from  '../../veiculos/veiculo/veiculo.model'
+
 @Component({
   selector: 'oo-cadastro-cliente',
   templateUrl: './cadastro-cliente.component.html'
@@ -46,6 +48,8 @@ export class CadastroClienteComponent implements OnInit {
         this.clienteForm.controls['cpf'].setValue(this.cliente.cpf)
         this.clienteForm.controls['email'].setValue(this.cliente.email)
         this.clienteForm.controls['telefone'].setValue(this.cliente.telefone)
+
+        console.log(retorno)
       })
     }
 
@@ -70,6 +74,8 @@ export class CadastroClienteComponent implements OnInit {
     this.cliente.email = cliente.email
     this.cliente.telefone = cliente.telefone
 
+    console.log(cliente)
+
     this.clientesService.alterar(this.cliente)
       .subscribe( (retorno: boolean) => {
         this.router.navigate(['/clientes'])
@@ -77,16 +83,25 @@ export class CadastroClienteComponent implements OnInit {
     })
   }
 
-  showModal() {
+  showModalVeiculo(veiculo: Veiculo) {
       this.dialogService.addDialog(ConfirmModalComponent, {
-        title:'Confirmation',
-        message:'Bla bla confirm some action?'})
+        title:'Veículo',
+        message:'Deseja realmente desvincular este veículo?'})
         .subscribe((isConfirmed)=>{
             if(isConfirmed)
-              console.log('BOTAO OK')
-            else
-              console.log('CANCELADO')
+              this.cliente.veiculos.splice(this.cliente.veiculos.indexOf(veiculo),1)
       });
     }
+    showModal() {
+        this.dialogService.addDialog(ConfirmModalComponent, {
+          title:'Confirmation',
+          message:'Bla bla confirm some action?'})
+          .subscribe((isConfirmed)=>{
+              if(isConfirmed)
+                console.log('BOTAO OK')
+              else
+                console.log('CANCELADO')
+        });
+      }
 
 }
