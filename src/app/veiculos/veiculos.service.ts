@@ -22,7 +22,7 @@ export class VeiculosService {
                         .map(response => response.json())
                         .catch(ErrorHandler.handleError)
       }else{
-        return this.http.get(`${REST_API}/veiculos/porlogin/${search.toString()}`)
+        return this.http.get(`${REST_API}/veiculos/placa/${search.toString()}`)
                         .map(response => response.json())
                         .catch(ErrorHandler.handleError)
       }
@@ -32,6 +32,12 @@ export class VeiculosService {
       return this.http.get(`${REST_API}/veiculos/${id}`)
         .map(response => response.json())
         .catch(ErrorHandler.handleError)
+    }
+
+    placa(placa: string): Observable<Veiculo>{
+      return this.http.get(`${REST_API}/veiculos/placa/${placa}`)
+                      .map(response => response.json() as Veiculo)
+                      .catch(ErrorHandler.handleError)
     }
 
     salvar(veiculo: Veiculo): Observable<string> {

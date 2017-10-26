@@ -6,6 +6,9 @@ import {Router, ActivatedRoute} from '@angular/router'
 
 import {Cliente} from  '../cliente/cliente.model'
 import {ClientesService} from  '../clientes.service'
+
+import {VeiculosService} from '../../veiculos/veiculos.service'
+
 import {NotificationService} from '../../shared/messages/notification.service'
 import {ConfirmModalComponent} from '../../shared/confirm-modal/confirm-modal.component'
 
@@ -19,8 +22,10 @@ export class CadastroClienteComponent implements OnInit {
 
   clienteForm: FormGroup
   cliente : Cliente
+  placa: String
 
   constructor(private clientesService: ClientesService,
+              private VeiculosService: VeiculosService,
               private notificationService: NotificationService,
               private router: Router, private route : ActivatedRoute,
               private formBuilder: FormBuilder,
@@ -48,8 +53,6 @@ export class CadastroClienteComponent implements OnInit {
         this.clienteForm.controls['cpf'].setValue(this.cliente.cpf)
         this.clienteForm.controls['email'].setValue(this.cliente.email)
         this.clienteForm.controls['telefone'].setValue(this.cliente.telefone)
-
-        console.log(retorno)
       })
     }
 
@@ -74,13 +77,30 @@ export class CadastroClienteComponent implements OnInit {
     this.cliente.email = cliente.email
     this.cliente.telefone = cliente.telefone
 
-    console.log(cliente)
-
     this.clientesService.alterar(this.cliente)
       .subscribe( (retorno: boolean) => {
         this.router.navigate(['/clientes'])
         this.notificationService.notify(`Cliente alterado!`)
     })
+  }
+
+  addVeiculoLista(){
+
+    if(this.placa != undefined && this.placa.toString() != ""){
+      this.VeiculosService.placa(this.placa.toString())
+      .subscribe((veiculo: Veiculo) => {
+        if (veiculo){
+          if(this.cliente.veiculos.find(veiculoDoArray => veiculoDoArray.id == veiculo.id))
+            this.notificationService.notify(`Veículo já adicionado!`)
+          else
+            this.cliente.veiculos.push(veiculo)
+        }
+        else
+          this.notificationService.notify(`Veículo não encontrado!`)
+      })
+    }
+    else
+      this.notificationService.notify(`Informe uma placa!`)
   }
 
   showModalVeiculo(veiculo: Veiculo) {
