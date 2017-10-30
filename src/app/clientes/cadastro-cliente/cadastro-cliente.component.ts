@@ -11,6 +11,7 @@ import {VeiculosService} from '../../veiculos/veiculos.service'
 
 import {NotificationService} from '../../shared/messages/notification.service'
 import {ConfirmModalComponent} from '../../shared/confirm-modal/confirm-modal.component'
+import {CadVeiculoModalComponent } from '../../shared/veiculo-modal/veiculo-modal.component'
 
 import {Veiculo} from  '../../veiculos/veiculo/veiculo.model'
 
@@ -21,17 +22,19 @@ import {Veiculo} from  '../../veiculos/veiculo/veiculo.model'
 export class CadastroClienteComponent implements OnInit {
 
   clienteForm: FormGroup
-  cliente : Cliente
   placa: String
+  cliente: Cliente
 
   constructor(private clientesService: ClientesService,
               private VeiculosService: VeiculosService,
               private notificationService: NotificationService,
-              private router: Router, private route : ActivatedRoute,
+              private router: Router,
+              private route : ActivatedRoute,
               private formBuilder: FormBuilder,
               private dialogService:DialogService) { }
 
   ngOnInit() {
+
     this.clienteForm = this.formBuilder.group({
       nome: this.formBuilder.control('', Validators.required),
       cpf: this.formBuilder.control('', Validators.required),
@@ -43,6 +46,9 @@ export class CadastroClienteComponent implements OnInit {
 
     if(id)
       this.buscar(id)
+    else
+      if(!this.cliente)
+        this.cliente = {id:null,nome:"",cpf:"",veiculos:[],email:"", telefone:null}
   }
 
     buscar(id:string){
@@ -57,7 +63,12 @@ export class CadastroClienteComponent implements OnInit {
     }
 
   btnSalvar(cliente: Cliente){
-    if(this.cliente)
+
+    console.log(this.cliente.veiculos)
+
+    cliente.veiculos = this.cliente.veiculos
+
+    if(this.cliente.id != null)
       this.alterar(cliente)
     else
       this.salvar(cliente)
@@ -85,18 +96,10 @@ export class CadastroClienteComponent implements OnInit {
   }
 
   addVeiculoLista(){
-
     if(this.placa != undefined && this.placa.toString() != ""){
       this.VeiculosService.placa(this.placa.toString())
       .subscribe((veiculo: Veiculo) => {
-        if (veiculo){
-          if(this.cliente.veiculos.find(veiculoDoArray => veiculoDoArray.id == veiculo.id))
-            this.notificationService.notify(`Veículo já adicionado!`)
-          else
-            this.cliente.veiculos.push(veiculo)
-        }
-        else
-          this.notificationService.notify(`Veículo não encontrado!`)
+        this.addVeiculoListaCliente(veiculo)
       })
     }
     else
@@ -113,15 +116,26 @@ export class CadastroClienteComponent implements OnInit {
       });
     }
     showModal() {
-        this.dialogService.addDialog(ConfirmModalComponent, {
-          title:'Confirmation',
-          message:'Bla bla confirm some action?'})
+        this.dialogService.addDialog(CadVeiculoModalComponent, {
+          title:'Cadastro de Veículo',
+          message:'Cadastro de veiculo'})
           .subscribe((isConfirmed)=>{
               if(isConfirmed)
-                console.log('BOTAO OK')
+               this.addVeiculoListaCliente(isConfirmed)
               else
                 console.log('CANCELADO')
         });
+      }
+
+      addVeiculoListaCliente(veiculo: Veiculo){
+        if (veiculo){
+          if(this.cliente.veiculos.find(veiculoDoArray => veiculoDoArray.id == veiculo.id))
+            this.notificationService.notify(`Veículo já adicionado!`)
+          else
+            this.cliente.veiculos.push(veiculo)
+        }
+        else
+          this.notificationService.notify(`Veículo não encontrado!`)
       }
 
 }

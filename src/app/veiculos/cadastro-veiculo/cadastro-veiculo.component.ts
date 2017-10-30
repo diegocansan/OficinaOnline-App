@@ -57,7 +57,7 @@ export class CadastroVeiculoComponent implements OnInit {
 
   salvar(veiculo: Veiculo){
     this.veiculosService.salvar(veiculo)
-      .subscribe( (retorno: string) => {
+      .subscribe( (retorno: Veiculo) => {
         this.router.navigate(['/veiculos'])
         this.notificationService.notify(`Veículo adicionado!`)
     })

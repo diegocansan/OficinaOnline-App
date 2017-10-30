@@ -40,14 +40,14 @@ export class VeiculosService {
                       .catch(ErrorHandler.handleError)
     }
 
-    salvar(veiculo: Veiculo): Observable<string> {
+    salvar(veiculo: Veiculo): Observable<Veiculo> {
       const headers = new Headers()
       headers.append('Content-Type', 'application/json')
       return this.http.post(`${REST_API}/veiculos/insere`,
                             JSON.stringify(veiculo),
                             new RequestOptions({headers: headers}))
-                      .map(response=> response.json())
-                      .map(veiculo => veiculo.id)
+                      .map(response=> response.json() as Veiculo)
+
     }
 
     alterar(veiculo: Veiculo):Observable<Boolean>{
