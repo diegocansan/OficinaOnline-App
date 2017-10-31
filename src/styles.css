@@ -12,6 +12,13 @@ body {
  * Component: Place Info Box
  * -------------------
  */
+ .place-info-box button{
+     border-top: 1px solid #ddd;
+     position:absolute;
+     top:0;
+     right:15px;
+ }
+
 .place-info-box {
   color: #555;
   display: block;
@@ -23,28 +30,10 @@ body {
   margin-bottom: 15px;
 }
 
-.place-info-box > button{
-    float: right;
-    border-top: 1px solid #ddd;
-    margin-top: -35px;
-    display: block;
-}
-
 .place-info-box small {
   font-size: 14px;
 }
-.place-info-box .progress {
-  background: rgba(0, 0, 0, 0.2);
-  margin: 5px -10px 5px -10px;
-  height: 2px;
-}
-.place-info-box .progress,
-.place-info-box .progress .progress-bar {
-  border-radius: 0;
-}
-.place-info .progress .progress-bar {
-  background: #fff;
-}
+
 .place-info-box-icon {
   border-top-left-radius: 2px;
   border-top-right-radius: 0;
@@ -52,14 +41,12 @@ body {
   border-bottom-left-radius: 2px;
   display: block;
   float: left;
-  /*height: 120px;*/
   width: 120px;
   text-align: center;
   background: rgba(0, 0, 0, 0.2);
 }
 .place-info-box-icon > img {
   max-width: 100%;
-  /*border-right: 1px solid rgba(0, 0, 0, 0.1);*/
 }
 .place-info-box-content {
   padding: 5px 10px;
