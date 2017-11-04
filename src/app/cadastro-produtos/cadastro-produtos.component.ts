@@ -14,6 +14,9 @@ import {Produto} from './produto/produto.model'
 import {ProdutosService} from './produtos.service'
 
 
+import { DialogService } from "ng2-bootstrap-modal";
+import {CadProdutoModalComponent } from '../shared/produto-modal/produto-modal.component'
+
 @Component({
   selector: 'oo-cadastro-produtos',
   templateUrl: './cadastro-produtos.component.html',
@@ -42,7 +45,8 @@ export class CadastroProdutosComponent implements OnInit {
   searchControl: FormControl
 
   constructor(private produtosService: ProdutosService,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+            private dialogService:DialogService) { }
 
   ngOnInit() {
     this.searchControl = this.fb.control('')
@@ -75,4 +79,18 @@ export class CadastroProdutosComponent implements OnInit {
     this.produtosService.produtos()
       .subscribe(produtos => this.produtos = produtos)
   }
+
+  showModal() {
+      this.dialogService.addDialog(CadProdutoModalComponent, {
+        title:'Cadastro de Produto',
+        message:'Cadastro de Produto'})
+        .subscribe((isConfirmed)=>{
+            if(isConfirmed)
+             this.produtos.push(isConfirmed)
+            else
+              console.log('CANCELADO')
+      });
+    }
+
+
 }

@@ -51,7 +51,7 @@ export class NovoProdutoComponent implements OnInit {
 
   salvar(produto: Produto){
     this.produtosService.salvarProduto(produto)
-      .subscribe( (retorno: string) => {
+      .subscribe( (retorno) => {
         this.router.navigate(['/produtos'])
         this.notificationService.notify(`Produto adicionado!`)
     })

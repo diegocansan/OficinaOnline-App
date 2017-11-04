@@ -2,14 +2,11 @@
   <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" (click)="close()" >&times;</button>
-      <h4 class="modal-title">Cadastro de Veiculo</h4>
+      <h4 class="modal-title">Cadastro de Veículo</h4>
     </div>
     <div class="modal-body">
       <form [formGroup]="veiculoForm" novalidate>
         <div class="row">
-          <div class="col-xs-12">
-            <p class="lead">Cadastro de Veículo</p>
-          </div>
           <div class="col-sm-6 col-xs-12">
             <oo-input-container errorMessage="Placa Obrigatória, somente números!" label="Placa">
               <input class="form-control" formControlName="placa" placeholder="Placa" autocomplete="off" >

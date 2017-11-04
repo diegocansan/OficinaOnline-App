@@ -13,6 +13,9 @@ import {Observable} from 'rxjs/Observable'
 import {Servico} from './servico/servico.model'
 import {ServicosService} from './servicos.service'
 
+import { DialogService } from "ng2-bootstrap-modal";
+import {CadServicoModalComponent } from '../shared/servico-modal/servico-modal.component'
+
 
 @Component({
   selector: 'oo-servicos',
@@ -42,7 +45,8 @@ export class ServicosComponent implements OnInit {
   searchControl: FormControl
 
   constructor(private servicosService: ServicosService,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+            private dialogService:DialogService) { }
 
   ngOnInit() {
     this.searchControl = this.fb.control('')
@@ -75,4 +79,19 @@ export class ServicosComponent implements OnInit {
   toggleSearch(){
     this.searchBarState = this.searchBarState === 'hidden' ? 'visible' : 'hidden'
   }
+
+  showModal() {
+      this.dialogService.addDialog(CadServicoModalComponent, {
+        title:'Cadastro de Servico',
+        message:'Cadastro de Servico'})
+        .subscribe((isConfirmed)=>{
+            if(isConfirmed)
+             this.servicos.push(isConfirmed)
+            else
+              console.log('CANCELADO')
+      });
+    }
+
+
+
 }

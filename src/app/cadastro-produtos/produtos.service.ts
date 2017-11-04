@@ -34,14 +34,13 @@ export class ProdutosService {
         .catch(ErrorHandler.handleError)
     }
 
-    salvarProduto(produto: Produto): Observable<string> {
+    salvarProduto(produto: Produto): Observable<Produto> {
       const headers = new Headers()
       headers.append('Content-Type', 'application/json')
       return this.http.post(`${REST_API}/produtos/insere`,
                             JSON.stringify(produto),
                             new RequestOptions({headers: headers}))
-                      .map(response=> response.json())
-                      .map(produto => produto.id)
+                      .map(response=> response.json() as Produto)
     }
 
     alterarProduto(produto: Produto):Observable<Boolean>{

@@ -4,6 +4,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 
 import {ConfirmModalComponent} from './confirm-modal/confirm-modal.component'
 import {CadVeiculoModalComponent } from './veiculo-modal/veiculo-modal.component'
+import {CadProdutoModalComponent } from './produto-modal/produto-modal.component';
+import {CadServicoModalComponent } from './servico-modal/servico-modal.component';
 import {InputComponent} from './input/input.component'
 import {RadioComponent} from './radio/radio.component'
 
@@ -16,11 +18,13 @@ import {SnackbarComponent} from './messages/snackbar/snackbar.component';
 import {NotificationService} from './messages/notification.service';
 
 
+
+
 @NgModule({
-  declarations: [InputComponent, RadioComponent, SnackbarComponent, ConfirmModalComponent, CadVeiculoModalComponent],
-  entryComponents: [ConfirmModalComponent,CadVeiculoModalComponent],
+  declarations: [InputComponent, RadioComponent, SnackbarComponent, ConfirmModalComponent, CadVeiculoModalComponent, CadProdutoModalComponent, CadServicoModalComponent],
+  entryComponents: [ConfirmModalComponent, CadVeiculoModalComponent, CadProdutoModalComponent, CadServicoModalComponent],
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  exports: [InputComponent, RadioComponent,SnackbarComponent,CommonModule,FormsModule, ReactiveFormsModule, ConfirmModalComponent,CadVeiculoModalComponent ]
+  exports: [InputComponent, RadioComponent,SnackbarComponent,CommonModule,FormsModule, ReactiveFormsModule, ConfirmModalComponent,CadVeiculoModalComponent, CadProdutoModalComponent,CadServicoModalComponent]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {

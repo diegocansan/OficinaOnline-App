@@ -34,14 +34,13 @@ export class ServicosService {
         .catch(ErrorHandler.handleError)
     }
 
-    salvar(servico: Servico): Observable<string> {
+    salvar(servico: Servico): Observable<Servico> {
       const headers = new Headers()
       headers.append('Content-Type', 'application/json')
       return this.http.post(`${REST_API}/servicos/insere`,
                             JSON.stringify(servico),
                             new RequestOptions({headers: headers}))
-                      .map(response=> response.json())
-                      .map(servico => servico.id)
+                        .map(response=> response.json() as Servico)
     }
 
     alterar(servico: Servico):Observable<Boolean>{
