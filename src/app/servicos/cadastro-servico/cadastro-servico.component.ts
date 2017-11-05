@@ -51,7 +51,7 @@ export class CadastroServicoComponent implements OnInit {
 
   salvar(servico: Servico){
     this.servicosService.salvar(servico)
-      .subscribe( (retorno: string) => {
+      .subscribe( (retorno) => {
         this.router.navigate(['/servicos'])
         this.notificationService.notify(`serviço adicionado!`)
     })
