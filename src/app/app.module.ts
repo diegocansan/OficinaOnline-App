@@ -32,6 +32,8 @@ import { VeiculoComponent } from './veiculos/veiculo/veiculo.component';
 import { ClienteComponent } from './clientes/cliente/cliente.component';
 import { CadastroClienteComponent } from './clientes/cadastro-cliente/cadastro-cliente.component';
 import { CadastroVeiculoComponent } from './veiculos/cadastro-veiculo/cadastro-veiculo.component';
+import { OrdemServicoComponent } from './src/app/ordem-servico/ordem-servico.component';
+import { OrdemComponent } from './ordem-servico/ordem/src/app/ordem-servico/ordem/ordem/ordem.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { CadastroVeiculoComponent } from './veiculos/cadastro-veiculo/cadastro-v
     VeiculoComponent,
     ClienteComponent,
     CadastroClienteComponent,
-    CadastroVeiculoComponent
+    CadastroVeiculoComponent,
+    OrdemServicoComponent,
+    OrdemComponent
    ],
   imports: [
     BrowserModule,
