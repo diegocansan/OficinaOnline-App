@@ -10,15 +10,15 @@ import 'rxjs/add/operator/catch'
 import 'rxjs/add/observable/from'
 import {Observable} from 'rxjs/Observable'
 
-import {Ordem} from './ordem/ordem.model'
-import {OrdemService} from './ordemservico.service'
+import {Ordem} from '../ordem/ordem.model'
+import {OrdemService} from '../ordemservico.service'
 
 @Component({
-  selector: 'oo-ordem-servico',
-  templateUrl: './ordem-servico.component.html'
+  selector: 'oo-ordens-andamento',
+  templateUrl: './ordens-andamento.component.html'
 })
 
-export class OrdemServicoComponent implements OnInit {
+export class OrdensAndamentoComponent implements OnInit {
   ordens: Ordem[] = []
 
   constructor(private ordemService: OrdemService) { }
@@ -32,7 +32,7 @@ export class OrdemServicoComponent implements OnInit {
   }
 
   atualizar(){
-    this.ordemService.buscarTodos()
+    this.ordemService.buscarPorStatus('3')
       .subscribe(ordens => this.ordens = ordens)
   }
 }

@@ -32,8 +32,12 @@ import { VeiculoComponent } from './veiculos/veiculo/veiculo.component';
 import { ClienteComponent } from './clientes/cliente/cliente.component';
 import { CadastroClienteComponent } from './clientes/cadastro-cliente/cadastro-cliente.component';
 import { CadastroVeiculoComponent } from './veiculos/cadastro-veiculo/cadastro-veiculo.component';
-import { OrdemServicoComponent } from './src/app/ordem-servico/ordem-servico.component';
-import { OrdemComponent } from './ordem-servico/ordem/src/app/ordem-servico/ordem/ordem/ordem.component';
+import { OrdemServicoComponent } from './ordem-servico/ordem-servico.component';
+import { OrdemComponent } from './ordem-servico/ordem/ordem.component';
+import { OrdensPendentesComponent } from './ordem-servico/ordens-pendentes/ordens-pendentes.component';
+import { OrdensAprovadasComponent } from './ordem-servico/ordens-aprovadas/ordens-aprovadas.component';
+import { OrdensAndamentoComponent } from './ordem-servico/ordens-andamento/ordens-andamento.component';
+import { OrdensConcluidasComponent } from './ordem-servico/ordens-concluidas/ordens-concluidas.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,11 @@ import { OrdemComponent } from './ordem-servico/ordem/src/app/ordem-servico/orde
     CadastroClienteComponent,
     CadastroVeiculoComponent,
     OrdemServicoComponent,
-    OrdemComponent
+    OrdemComponent,
+    OrdensPendentesComponent,
+    OrdensAprovadasComponent,
+    OrdensAndamentoComponent,
+    OrdensConcluidasComponent
    ],
   imports: [
     BrowserModule,

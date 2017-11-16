@@ -9,6 +9,7 @@ import {CadServicoModalComponent } from './servico-modal/servico-modal.component
 import {InputComponent} from './input/input.component'
 import {RadioComponent} from './radio/radio.component'
 
+import {OrdemService} from '../ordem-servico/ordemservico.service'
 import {ProdutosService} from '../cadastro-produtos/produtos.service'
 import {ServicosService} from '../servicos/servicos.service'
 import {UsuariosService} from '../usuarios/usuarios.service'
@@ -16,8 +17,6 @@ import {ClientesService} from '../clientes/clientes.service'
 import {VeiculosService} from '../veiculos/veiculos.service'
 import {SnackbarComponent} from './messages/snackbar/snackbar.component';
 import {NotificationService} from './messages/notification.service';
-
-
 
 
 @NgModule({
@@ -30,7 +29,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule:SharedModule,
-      providers:[ProdutosService,ServicosService,UsuariosService,ClientesService,VeiculosService,NotificationService],
+      providers:[OrdemService,ProdutosService,ServicosService,UsuariosService,ClientesService,VeiculosService,NotificationService],
         }
   }
 }

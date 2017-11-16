@@ -17,12 +17,31 @@ import {CadastroClienteComponent} from './clientes/cadastro-cliente/cadastro-cli
 import {VeiculosComponent} from './veiculos/veiculos.component'
 import {CadastroVeiculoComponent} from './veiculos/cadastro-veiculo/cadastro-veiculo.component'
 
+import {OrdemServicoComponent} from './ordem-servico/ordem-servico.component'
+import {OrdensAndamentoComponent} from './ordem-servico/ordens-andamento/ordens-andamento.component'
+import {OrdensPendentesComponent} from './ordem-servico/ordens-pendentes/ordens-pendentes.component'
+import {OrdensConcluidasComponent} from './ordem-servico/ordens-concluidas/ordens-concluidas.component'
+import {OrdensAprovadasComponent} from './ordem-servico/ordens-aprovadas/ordens-aprovadas.component'
+
+
 import {NotFoundComponent} from './not-found/not-found.component'
 
 
 
 export const ROUTES: Routes = [
   {path: '', component: HomeComponent},
+
+  {path: 'ordemServico', component: OrdemServicoComponent,
+    children: [
+    {path: '', redirectTo: 'pendentes', pathMatch: 'full'},
+    {path: 'pendentes', component: OrdensPendentesComponent},
+    {path: 'aprovadas', component: OrdensAprovadasComponent},
+    {path: 'andamento', component: OrdensAndamentoComponent},
+    {path: 'concluidas', component: OrdensConcluidasComponent}
+
+    ]
+  },
+
 
   {path: 'usuarios', component: UsuariosComponent},
   {path: 'mantemUsuario', component: CadastroUsuarioComponent},
