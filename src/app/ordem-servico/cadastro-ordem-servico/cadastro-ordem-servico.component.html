@@ -1,0 +1,68 @@
+<section class="content-header">
+</section>
+
+<section class="content">
+  <section class="invoice">
+    <form [formGroup]="ordemForm" novalidate>
+      <div class="row">
+        <div class="col-xs-12">
+          <p class="lead">Cadastro de Ordem de Serviço</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <oo-input-container errorMessage="Obrigatório!" label="Nome">
+            <input class="form-control" formControlName="nome" placeholder="Nome" autocomplete="off" >
+          </oo-input-container>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <oo-input-container errorMessage="Obrigatório e somente números!" label="CPF">
+            <input type="text" class="form-control" formControlName="cpf" placeholder="CPF" autocomplete="off">
+          </oo-input-container>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <oo-input-container errorMessage="Obrigatório!" label="Email">
+            <input type="text" class="form-control" formControlName="email" placeholder="Email" autocomplete="off">
+          </oo-input-container>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <oo-input-container errorMessage="Obrigatório!" label="Fone">
+            <input type="text" class="form-control" formControlName="telefone" placeholder="Fone" autocomplete="off">
+          </oo-input-container>
+        </div>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col-md-3 col-sm-6">
+        <input type="text" [(ngModel)]="placa" class="form-control" placeholder="Placa" autocomplete="off">
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <button class="btn btn-success" (click)=addVeiculoLista()><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Buscar</button>
+        <button class="btn btn-success" (click)=showModal()><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Veiculo</button>
+      </div>
+      <div class="col-md-3 col-xs-12 text-center">
+        <button (click)="btnSalvar(ordemForm.value)" class="btn btn-success"
+          [disabled]="!ordemForm.valid">
+          <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;Salvar
+        </button>
+      </div>
+    </div>
+    <div class="row" >
+      <div class="col-md-6" *ngFor="let produto of ordem?.produtos">
+        <div class="client-cars-list">
+          <button class="btn btn-danger fa fa-times" aria-hidden="true" (click)="showModalProduto(produto)"> </button>
+          <span class="client-cars-list-text">{{produto.nome}} - {{produto.valor}}</span>
+        </div>
+      </div>
+      <div class="col-md-6" *ngFor="let servico of ordem?.servicos">
+        <div class="client-cars-list">
+          <button class="btn btn-danger fa fa-times" aria-hidden="true" (click)="showModalServico(servico)"> </button>
+          <span class="client-cars-list-text">{{servico.nome}} - {{servico.valor}}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+<!-- FIM DO CONTEUDO-->

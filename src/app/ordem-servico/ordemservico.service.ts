@@ -35,7 +35,7 @@ export class OrdemService {
     }
 
     byId(id: string): Observable<Ordem>{
-      return this.http.get(`${REST_API}/servicos/${id}`)
+      return this.http.get(`${REST_API}/ordemServicos/${id}`)
         .map(response => response.json())
         .catch(ErrorHandler.handleError)
     }

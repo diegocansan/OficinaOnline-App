@@ -38,6 +38,7 @@ import { OrdensPendentesComponent } from './ordem-servico/ordens-pendentes/orden
 import { OrdensAprovadasComponent } from './ordem-servico/ordens-aprovadas/ordens-aprovadas.component';
 import { OrdensAndamentoComponent } from './ordem-servico/ordens-andamento/ordens-andamento.component';
 import { OrdensConcluidasComponent } from './ordem-servico/ordens-concluidas/ordens-concluidas.component';
+import { CadastroOrdemServicoComponent } from './ordem-servico/cadastro-ordem-servico/cadastro-ordem-servico.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { OrdensConcluidasComponent } from './ordem-servico/ordens-concluidas/ord
     OrdensPendentesComponent,
     OrdensAprovadasComponent,
     OrdensAndamentoComponent,
-    OrdensConcluidasComponent
+    OrdensConcluidasComponent,
+    CadastroOrdemServicoComponent
    ],
   imports: [
     BrowserModule,
