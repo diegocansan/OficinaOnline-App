@@ -22,7 +22,7 @@ import {OrdensAndamentoComponent} from './ordem-servico/ordens-andamento/ordens-
 import {OrdensPendentesComponent} from './ordem-servico/ordens-pendentes/ordens-pendentes.component'
 import {OrdensConcluidasComponent} from './ordem-servico/ordens-concluidas/ordens-concluidas.component'
 import {OrdensAprovadasComponent} from './ordem-servico/ordens-aprovadas/ordens-aprovadas.component'
-
+import {CadastroOrdemServicoComponent} from './ordem-servico/cadastro-ordem-servico/cadastro-ordem-servico.component'
 
 import {NotFoundComponent} from './not-found/not-found.component'
 
@@ -38,9 +38,10 @@ export const ROUTES: Routes = [
     {path: 'aprovadas', component: OrdensAprovadasComponent},
     {path: 'andamento', component: OrdensAndamentoComponent},
     {path: 'concluidas', component: OrdensConcluidasComponent}
-
     ]
   },
+  {path: 'mantemOrdem', component: CadastroOrdemServicoComponent},
+  {path: 'mantemOrdem/:id', component: CadastroOrdemServicoComponent},
 
 
   {path: 'usuarios', component: UsuariosComponent},

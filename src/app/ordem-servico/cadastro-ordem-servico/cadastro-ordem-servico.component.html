@@ -40,13 +40,27 @@
       </div>
       <div class="col-md-3 col-sm-6">
         <button class="btn btn-success" (click)=addVeiculoLista()><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Buscar</button>
-        <button class="btn btn-success" (click)=showModal()><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Veiculo</button>
+        <button class="btn btn-success" (click)=showModalCadVeiculo()><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Veiculo</button>
       </div>
+      <div class="row">
+        <span class="client-cars-list-text">{{ordem?.veiculo.placa}} - {{ordem?.veiculo.modelo}}</span>
+      </div>
+
       <div class="col-md-3 col-xs-12 text-center">
         <button (click)="btnSalvar(ordemForm.value)" class="btn btn-success"
           [disabled]="!ordemForm.valid">
           <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;Salvar
         </button>
+      </div>
+    </div>
+    <div class="row" >
+      <div class="col-md-6">
+        <button class="btn btn-success" (click)=addProdutoOrdem()><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Add Produto</button>
+        <button class="btn btn-success" (click)=showModalCadProduto()><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Produto</button>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-success" (click)=addServicoOrdem()><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Add Serviço</button>
+        <button class="btn btn-success" (click)=showModalCadServico()><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Serviço</button>
       </div>
     </div>
     <div class="row" >
