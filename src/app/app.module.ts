@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { LocationStrategy, HashLocationStrategy } from '@angular/common'
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import {TypeaheadModule} from 'ngx-bootstrap/typeahead';
 
 import { ROUTES } from './app.routes'
 
@@ -69,6 +70,7 @@ import { CadastroOrdemServicoComponent } from './ordem-servico/cadastro-ordem-se
     OrdensAndamentoComponent,
     OrdensConcluidasComponent,
     CadastroOrdemServicoComponent
+
    ],
   imports: [
     BrowserModule,
@@ -76,7 +78,8 @@ import { CadastroOrdemServicoComponent } from './ordem-servico/cadastro-ordem-se
     HttpModule,
     BootstrapModalModule,
     SharedModule.forRoot(),
-    RouterModule.forRoot(ROUTES,{preloadingStrategy: PreloadAllModules})
+    RouterModule.forRoot(ROUTES,{preloadingStrategy: PreloadAllModules}),
+    TypeaheadModule.forRoot()
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]
