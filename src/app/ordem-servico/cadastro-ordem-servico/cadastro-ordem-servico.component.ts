@@ -2,6 +2,7 @@ import { Component, OnInit, AfterContentInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms'
 import { DialogService } from "ng2-bootstrap-modal";
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
+import { TooltipModule } from 'ngx-bootstrap';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
@@ -81,8 +82,6 @@ export class CadastroOrdemServicoComponent implements OnInit {
         cpf: this.formBuilder.control('', Validators.required),
         email: this.formBuilder.control('', Validators.required),
         telefone: this.formBuilder.control('', Validators.required)
-
-
 
       })
 

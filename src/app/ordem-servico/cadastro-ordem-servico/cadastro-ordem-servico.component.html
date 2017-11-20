@@ -9,7 +9,6 @@
           <p class="lead">Cadastro de Ordem de Serviço</p>
         </div>
       </div>
-      {{ordem?.data}}
       <div class="row">
         <div class="col-sm-12 col-md-6">
           <oo-input-container errorMessage="Obrigatório!" label="Nome">
@@ -36,12 +35,12 @@
       </div>
     </form>
     <div class="row">
-      <div class="col-md-3 col-sm-6">
+      <div class="col-md-4 col-sm-6">
         <input [(ngModel)]="veiculoSelecionado"
                [typeahead]="ordem?.cliente.veiculos"
                (typeaheadOnSelect)="typeaheadVeiculoOnSelect($event)"
                placeholder="Selecionar veículo cliente"
-               tooltip="informar a placa"
+               tooltip="Informe a placa do veículo do cliente"
                typeaheadOptionField="placa"
        class="form-control">
       </div>
@@ -51,18 +50,9 @@
       <div class="row">
         <span class="client-cars-list-text">{{ordem?.veiculo.placa}} - {{ordem?.veiculo.modelo}}</span>
       </div>
-
-    <div class="row">
-      <div class="col-md-12 col-xs-12 text-center">
-        <button (click)="btnSalvar(ordemForm.value)" class="btn btn-success"
-          [disabled]="!ordemForm.valid">
-          <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;Salvar
-        </button>
-      </div>
     </div>
-    </div>
-    <div class="row" >
-      <div class="col-md-6">
+    <div class="row margin-top-5" >
+      <div class="col-md-4">
           <input [(ngModel)]="nomeProdutoSelecionado"
            [typeahead]="dataSourceProdutos"
            (typeaheadLoading)="changeProdutoTypeaheadLoading($event)"
@@ -70,14 +60,15 @@
            (typeaheadOnSelect)="typeaheadProdutoOnSelect($event)"
            [typeaheadOptionsLimit]="10"
            typeaheadOptionField="nome"
-           placeholder="Selecionar de Produto"
+           placeholder="Selecionar Produto"
            class="form-control">
-           <div *ngIf="typeaheadLoading===true">Loading</div>
+           <div *ngIf="typeaheadLoading===true">Loading...</div>
            <div *ngIf="typeaheadNoResults===true">&#10060; Nenhum Produto Encontrado</div>
+         </div>
+         <div class="col-md-2">
            <button class="btn btn-success" (click)=showModalCadProduto()><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Produto</button>
-      </div>
+         </div>
       <div class="col-md-4">
-        <div class="row" >
           <input [(ngModel)]="nomeServicoSelecionado"
            [typeahead]="dataSourceServicos"
            (typeaheadLoading)="typeaheadServicoLoading($event)"
@@ -85,12 +76,13 @@
            (typeaheadOnSelect)="typeaheadServicoOnSelect($event)"
            [typeaheadOptionsLimit]="10"
            typeaheadOptionField="nome"
-           placeholder="Selecionar de Serviço"
+           placeholder="Selecionar Serviço"
            class="form-control col-md-3">
-           <div *ngIf="servicostypeaheadLoading===true">Loading</div>
+           <div *ngIf="servicostypeaheadLoading===true">Loading...</div>
            <div *ngIf="servicostypeaheadNoResults===true">&#10060; Nenhum Serviço Encontrado</div>
-           <button class="btn btn-success" (click)=showModalCadServico()><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Serviço</button>
-        </div>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-success" (click)=showModalCadServico()><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Serviço</button>
       </div>
     </div>
     <div class="row" >
@@ -98,7 +90,7 @@
         <div class="row" *ngFor="let produto of ordem?.produtos">
           <div class="client-cars-list float-md-left">
             <button class="btn btn-danger fa fa-times" aria-hidden="true" (click)="showModalProduto(produto)"> </button>
-            <span class="client-cars-list-text">{{produto.nome}} - {{produto.valor}}</span>
+            <span class="client-cars-list-text">{{produto.nome}} - {{produto.valor | currency: 'BRL': true}}</span>
           </div>
         </div>
       </div>
@@ -106,9 +98,17 @@
         <div class="row" *ngFor="let servico of ordem?.servicos">
         <div class="client-cars-list float-md-right">
           <button class="btn btn-danger fa fa-times" aria-hidden="true" (click)="showModalServico(servico)"> </button>
-          <span class="client-cars-list-text">{{servico.nome}} - {{servico.valor}}</span>
+          <span class="client-cars-list-text">{{servico.nome}} - {{servico.valor | currency: 'BRL': true}}</span>
         </div>
       </div>
+      </div>
+    </div>
+    <div class="row margin-top-5">
+      <div class="col-md-12 col-xs-12 text-center">
+        <button (click)="btnSalvar(ordemForm.value)" class="btn btn-success"
+          [disabled]="!ordemForm.valid">
+          <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;Salvar
+        </button>
       </div>
     </div>
   </section>

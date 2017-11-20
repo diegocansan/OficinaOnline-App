@@ -3,7 +3,7 @@
     <a [routerLink]="['/novoProduto', produto.id]">
       <div>
         <span class="place-info-box-text">Nome: {{produto.nome}}</span>
-        <span class="place-info-box-text">Valor: {{produto.valor}}</span>
+        <span class="place-info-box-text">Valor: {{produto.valor | currency: 'BRL': true}}</span>
       </div>
     </a>
     <button class="btn btn-danger fa fa-times" aria-hidden="true" (click)="showModal(produto)"> </button>

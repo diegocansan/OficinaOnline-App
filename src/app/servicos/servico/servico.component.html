@@ -3,7 +3,7 @@
     <a [routerLink]="['/mantemServico', servico.id]">
       <div>
         <span class="place-info-box-text">Nome: {{servico.nome}}</span>
-        <span class="place-info-box-text">Valor: {{servico.valor}}</span>
+        <span class="place-info-box-text">Valor: {{servico.valor | currency: 'BRL': true}}</span>
       </div>
     </a>
     <div class="btn-servico-list">
