@@ -10,45 +10,53 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <oo-input-container errorMessage="Obrigatório!" label="Nome">
-            <input class="form-control" formControlName="nome" placeholder="Nome" autocomplete="off" >
-          </oo-input-container>
-        </div>
-        <div class="col-md-3 col-sm-6">
-          <oo-input-container errorMessage="Obrigatório e somente números!" label="CPF">
-            <input type="text" class="form-control" formControlName="cpf" placeholder="CPF" autocomplete="off">
-          </oo-input-container>
-        </div>
-        <div class="col-md-3 col-sm-6">
-          <oo-input-container errorMessage="Obrigatório!" label="Email">
-            <input type="text" class="form-control" formControlName="email" placeholder="Email" autocomplete="off">
-          </oo-input-container>
-        </div>
+        <div class="col-md-4">
+            <input [(ngModel)]="nomeClienteSelecionado"
+             [typeahead]="dataSourceClientes"
+             (typeaheadLoading)="changeClienteTypeaheadLoading($event)"
+             (typeaheadNoResults)="changeClienteTypeaheadNoResults($event)"
+             (typeaheadOnSelect)="typeaheadClienteOnSelect($event)"
+             [typeaheadOptionsLimit]="10"
+             typeaheadOptionField="nome"
+             placeholder="Buscar cliente por nome"
+             class="form-control"
+             [ngModelOptions]="{standalone: true}">
+             <div *ngIf="clienteTypeaheadLoading===true">Loading...</div>
+             <div *ngIf="clienteTypeaheadNoResults===true">&#10060; Nenhum cliente encontrado!</div>
+         </div>
       </div>
-      <div class="row">
-        <div class="col-md-3 col-sm-6">
-          <oo-input-container errorMessage="Obrigatório!" label="Fone">
-            <input type="text" class="form-control" formControlName="telefone" placeholder="Fone" autocomplete="off">
-          </oo-input-container>
+      <div class="row margin-top-5" *ngIf="ordem?.cliente">
+        <div class="col-md-2 col-sm-6">
+          <input class="form-control" disabled="true" formControlName="cpf" [(ngModel)]=ordem.cliente.cpf placeholder="CPF">
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <input class="form-control" disabled="true" formControlName="nome" [(ngModel)]=ordem.cliente.nome placeholder="Nome">
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <input class="form-control" disabled="true" formControlName="email" [(ngModel)]=ordem.cliente.email placeholder="E-mail">
+        </div>
+        <div class="col-md-2 col-sm-6">
+          <input class="form-control" disabled="true" formControlName="telefone" [(ngModel)]=ordem.cliente.telefone placeholder="Telefone">
         </div>
       </div>
     </form>
-    <div class="row">
+    <div class="row margin-top-5">
       <div class="col-md-4 col-sm-6">
         <input [(ngModel)]="veiculoSelecionado"
-               [typeahead]="ordem?.cliente.veiculos"
+               [typeahead]="dataSourceVeiculos"
                (typeaheadOnSelect)="typeaheadVeiculoOnSelect($event)"
-               placeholder="Selecionar veículo cliente"
+               (typeaheadLoading)="changeVeiculoTypeaheadLoading($event)"
+               (typeaheadNoResults)="changeVeiculoTypeaheadNoResults($event)"
+               (typeaheadOnSelect)="typeaheadVeiculoOnSelect($event)"
+               placeholder="Buscar veículo do cliente pela placa"
                tooltip="Informe a placa do veículo do cliente"
                typeaheadOptionField="placa"
-       class="form-control">
+               class="form-control">
+               <div *ngIf="veiculoTypeaheadLoading===true">Loading...</div>
+               <div *ngIf="veiculoTypeaheadNoResults===true">&#10060; Nenhum veículo encontrado!</div>
       </div>
       <div class="col-md-3 col-sm-6">
         <button class="btn btn-success" (click)=showModalCadVeiculo()><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Veiculo</button>
-      </div>
-      <div class="row">
-        <span class="client-cars-list-text">{{ordem?.veiculo.placa}} - {{ordem?.veiculo.modelo}}</span>
       </div>
     </div>
     <div class="row margin-top-5" >
@@ -105,7 +113,7 @@
     </div>
     <div class="row margin-top-5">
       <div class="col-md-12 col-xs-12 text-center">
-        <button (click)="btnSalvar(ordemForm.value)" class="btn btn-success"
+        <button (click)="btnSalvar()" class="btn btn-success"
           [disabled]="!ordemForm.valid">
           <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;Salvar
         </button>

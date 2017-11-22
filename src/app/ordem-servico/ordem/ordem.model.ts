@@ -4,7 +4,7 @@ import {Servico} from '../../servicos/servico/servico.model'
 import {Produto} from '../../cadastro-produtos/produto/produto.model'
 import {StatusOrdem} from './status.model'
 
-export interface Ordem {
+export class Ordem {
   id: string
   data: string
   status: StatusOrdem

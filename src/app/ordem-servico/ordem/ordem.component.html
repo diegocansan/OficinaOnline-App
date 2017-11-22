@@ -1,11 +1,11 @@
 <div class="place-info-box" [@ordemAppeared]="ordemState">
   <a [routerLink]="['/mantemOrdem', ordem.id]">
     <div>
-      <span class="place-info-box-text">ID: {{ordem.id}}</span>
-      <span class="place-info-box-text">Data: {{ordem.data | date:'dd/MM/yyyy'}}</span>
-      <span class="place-info-box-text">Status: {{ordem.status.status}}</span>
-      <span class="place-info-box-text">Veículo: {{ordem.veiculo.modelo}}</span>
-      <span class="place-info-box-text">Cliente: {{ordem.cliente.nome}}</span>
+      <span class="place-info-box-text">ID: {{ordem?.id}}</span>
+      <span class="place-info-box-text">Data: {{ordem?.data | date:'dd/MM/yyyy'}}</span>
+      <span class="place-info-box-text">Status: {{ordem?.status.status}}</span>
+      <span class="place-info-box-text">Veículo: {{ordem?.veiculo.modelo}}</span>
+      <span class="place-info-box-text">Cliente: {{ordem?.cliente.nome}}</span>
     </div>
   </a>
   <button class="btn btn-danger fa fa-times " aria-hidden="true" (click)="showModal(ordem)"> </button>

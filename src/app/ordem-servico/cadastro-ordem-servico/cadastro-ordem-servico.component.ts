@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
-import {FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms'
+import {FormGroup, FormBuilder,Validators, AbstractControl} from '@angular/forms'
 import { DialogService } from "ng2-bootstrap-modal";
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { TooltipModule } from 'ngx-bootstrap';
@@ -38,9 +38,19 @@ import {CadServicoModalComponent } from '../../shared/servico-modal/servico-moda
 export class CadastroOrdemServicoComponent implements OnInit {
 
   ordemForm: FormGroup
-  veiculoSelecionado: String
+
   cpf: String
   ordem: Ordem
+
+  nomeClienteSelecionado: String;
+  clienteTypeaheadLoading: boolean;
+  clienteTypeaheadNoResults: boolean;
+  dataSourceClientes: Observable<Cliente>;
+
+  dataSourceVeiculos: Observable<Veiculo>;
+  veiculoSelecionado: String;
+  veiculoTypeaheadLoading: boolean;
+  veiculoTypeaheadNoResults: boolean;
 
   nomeProdutoSelecionado: String;
   typeaheadLoading: boolean;
@@ -52,6 +62,7 @@ export class CadastroOrdemServicoComponent implements OnInit {
   servicostypeaheadNoResults: boolean;
   dataSourceServicos: Observable<Servico>;
 
+  disableInput: boolean;
 
   constructor(private ordemService: OrdemService,
     private clientesService: ClientesService,
@@ -63,6 +74,15 @@ export class CadastroOrdemServicoComponent implements OnInit {
     private route : ActivatedRoute,
     private formBuilder: FormBuilder,
     private dialogService:DialogService) {
+
+
+      this.dataSourceClientes = Observable.create((observer: any) => {
+        observer.next(this.nomeClienteSelecionado);
+      }).mergeMap((token: string) => this.getClientesAsObservable(token));
+
+      this.dataSourceVeiculos = Observable.create((observer: any) => {
+        observer.next(this.veiculoSelecionado);
+      }).mergeMap((token: string) => this.getVeiculosAsObservable(token));
 
       this.dataSourceProdutos = Observable.create((observer: any) => {
         observer.next(this.nomeProdutoSelecionado);
@@ -76,22 +96,21 @@ export class CadastroOrdemServicoComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.ordem = {id:null,data:"", status:{id:"1",status:"Pendente"}, cliente:{id:null,nome:"",cpf:"",email:"",telefone:null,veiculos:[]}, veiculo:null,produtos:[],servicos:[]}
+
+      this.disableInput = true;
 
       this.ordemForm = this.formBuilder.group({
-        nome: this.formBuilder.control('', Validators.required),
-        cpf: this.formBuilder.control('', Validators.required),
-        email: this.formBuilder.control('', Validators.required),
-        telefone: this.formBuilder.control('', Validators.required)
-
+        nome: this.formBuilder.control(this.ordem.cliente.nome, Validators.required),
+        cpf: this.formBuilder.control(this.ordem.cliente.cpf,Validators.required),
+        email: this.formBuilder.control(this.ordem.cliente.email),
+        telefone: this.formBuilder.control(this.ordem.cliente.telefone)
       })
 
       let id = this.route.snapshot.paramMap.get("id")
-
       if(id)
-      this.buscar(id)
-      else
-      if(!this.ordem)
-      this.ordem = {id:null,data:"", status:null, cliente:null, veiculo:null,produtos:[],servicos:[]}
+        this.buscar(id)
+
     }
 
     buscar(id:string){
@@ -107,16 +126,15 @@ export class CadastroOrdemServicoComponent implements OnInit {
 
     btnSalvar(ordem: Ordem){
 
-      ordem.data = new Date(new Date(new Date().getDate()).toISOString()).toJSON()
-      ordem.cliente = this.ordem.cliente
-      ordem.veiculo = this.ordem.veiculo
-      ordem.produtos = this.ordem.produtos
-      ordem.servicos = this.ordem.servicos
+      console.log(new Date().toJSON())
+
+      this.ordem.data = new Date().toJSON()
 
       if(this.ordem.id != null)
-      this.alterar(ordem)
+        this.alterar(this.ordem)
       else
-      this.salvar(ordem)
+        this.salvar(this.ordem)
+
     }
 
     salvar(ordem: Ordem){
@@ -141,21 +159,40 @@ export class CadastroOrdemServicoComponent implements OnInit {
       })
     }
 
+    getVeiculosAsObservable(token: String): Observable<Veiculo[]>{
+      let query = new RegExp(token.toString(), 'ig')
+
+       return Observable.of(this.ordem.cliente.veiculos.filter((veiculoDoArray) => {
+          return query.test(veiculoDoArray.placa);
+        }))
+    }
+
     /* ------------ CLIENTE ---------------- */
-    addCliente(){
-      if(this.cpf != undefined && this.cpf.toString() != ""){
-        this.clientesService.byId(this.cpf.toString())
-        .subscribe((cliente: Cliente) => {
-          this.addClienteOrdem(cliente)
-        })
-      }
-      else
-        this.notificationService.notify(`Informe um CPF!`)
+    getClientesAsObservable(token: string): Observable<Produto> {
+      return this.clientesService
+      .buscarTodos(token)
+      .catch(error=>Observable.from([]))
+    }
+
+    changeClienteTypeaheadLoading(e: boolean): void {
+      this.clienteTypeaheadLoading = e;
+    }
+
+    changeClienteTypeaheadNoResults(e: boolean): void {
+      this.clienteTypeaheadNoResults = e;
+    }
+
+    typeaheadClienteOnSelect(e: TypeaheadMatch): void {
+      this.addClienteOrdem(e.item)
+      this.nomeClienteSelecionado = ""
+      this.ordem.veiculo = null
     }
 
     addClienteOrdem(cliente: Cliente){
       if (cliente)
         this.ordem.cliente = cliente
+      else
+        this.notificationService.notify(`Cliente não encontrado!`)
     }
     /* --------------------- FIM CLIENTE -----------------------*/
 
@@ -171,6 +208,15 @@ export class CadastroOrdemServicoComponent implements OnInit {
             this.addVeiculoOrdem(veiculo)
         });
       }
+
+      changeVeiculoTypeaheadLoading(e: boolean): void {
+        this.veiculoTypeaheadLoading = e;
+      }
+
+      changeVeiculoTypeaheadNoResults(e: boolean): void {
+        this.veiculoTypeaheadNoResults = e;
+      }
+
       typeaheadVeiculoOnSelect(e: TypeaheadMatch): void {
         this.addVeiculoOrdem(e.item)
         this.veiculoSelecionado = ""
