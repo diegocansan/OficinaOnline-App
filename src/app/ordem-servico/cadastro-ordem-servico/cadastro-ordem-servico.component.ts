@@ -45,9 +45,9 @@ export class CadastroOrdemServicoComponent implements OnInit {
   nomeClienteSelecionado: String;
   clienteTypeaheadLoading: boolean;
   clienteTypeaheadNoResults: boolean;
-  dataSourceClientes: Observable<Cliente>;
+  dataSourceClientes: Observable<Cliente[]>;
 
-  dataSourceVeiculos: Observable<Veiculo>;
+  dataSourceVeiculos: Observable<Veiculo[]>;
   veiculoSelecionado: String;
   veiculoTypeaheadLoading: boolean;
   veiculoTypeaheadNoResults: boolean;
@@ -55,12 +55,12 @@ export class CadastroOrdemServicoComponent implements OnInit {
   nomeProdutoSelecionado: String;
   typeaheadLoading: boolean;
   typeaheadNoResults: boolean;
-  dataSourceProdutos: Observable<Produto>;
+  dataSourceProdutos: Observable<Produto[]>;
 
   nomeServicoSelecionado: String;
   servicostypeaheadLoading: boolean;
   servicostypeaheadNoResults: boolean;
-  dataSourceServicos: Observable<Servico>;
+  dataSourceServicos: Observable<Servico[]>;
 
   disableInput: boolean;
 
@@ -96,7 +96,7 @@ export class CadastroOrdemServicoComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.ordem = {id:null,data:"", status:{id:"1",status:"Pendente"}, cliente:{id:null,nome:"",cpf:"",email:"",telefone:null,veiculos:[]}, veiculo:null,produtos:[],servicos:[]}
+      this.ordem = {id:null,data:"", status:{id:"1",status:"Pendente"}, cliente:{id:null,nome:"",cpf:"",email:"",telefone:null,veiculos:[]}, veiculo:null,produtos:[],servicos:[]}
 
       this.disableInput = true;
 
@@ -159,16 +159,10 @@ export class CadastroOrdemServicoComponent implements OnInit {
       })
     }
 
-    getVeiculosAsObservable(token: String): Observable<Veiculo[]>{
-      let query = new RegExp(token.toString(), 'ig')
 
-       return Observable.of(this.ordem.cliente.veiculos.filter((veiculoDoArray) => {
-          return query.test(veiculoDoArray.placa);
-        }))
-    }
 
     /* ------------ CLIENTE ---------------- */
-    getClientesAsObservable(token: string): Observable<Produto> {
+    getClientesAsObservable(token: string): Observable<Cliente[]> {
       return this.clientesService
       .buscarTodos(token)
       .catch(error=>Observable.from([]))
@@ -209,6 +203,14 @@ export class CadastroOrdemServicoComponent implements OnInit {
         });
       }
 
+      getVeiculosAsObservable(token: string): Observable<Veiculo[]> {
+
+        let query = new RegExp(token,"gi")
+        return Observable.of(this.ordem.cliente.veiculos.filter((veiculoDoArray) => {
+            return query.test(veiculoDoArray.placa);
+          }))
+      }
+
       changeVeiculoTypeaheadLoading(e: boolean): void {
         this.veiculoTypeaheadLoading = e;
       }
@@ -235,7 +237,7 @@ export class CadastroOrdemServicoComponent implements OnInit {
 
 
       /* ------------------ PRODUTOS ------------------- */
-      getProdutosAsObservable(token: string): Observable<Produto> {
+      getProdutosAsObservable(token: string): Observable<Produto[]> {
         return this.produtosService
         .produtos(token)
         .catch(error=>Observable.from([]))
@@ -290,7 +292,7 @@ export class CadastroOrdemServicoComponent implements OnInit {
 
 
           /* ------------ SERVIÇOS ------------------------ */
-          getServicosAsObservable(token: string): Observable<Servico> {
+          getServicosAsObservable(token: string): Observable<Servico[]> {
             console.log(token)
             return this.servicosService
             .buscarTodos(token)
