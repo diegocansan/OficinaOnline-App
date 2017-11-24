@@ -8,6 +8,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common'
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { TypeaheadModule} from 'ngx-bootstrap/typeahead';
 import { TooltipModule } from 'ngx-bootstrap';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import {NgxPaginationModule} from 'ngx-pagination'
 
 import { ROUTES } from './app.routes'
 
@@ -78,10 +80,12 @@ import { CadastroOrdemServicoComponent } from './ordem-servico/cadastro-ordem-se
     BrowserAnimationsModule,
     HttpModule,
     BootstrapModalModule,
+    NgxPaginationModule,
     SharedModule.forRoot(),
     RouterModule.forRoot(ROUTES,{preloadingStrategy: PreloadAllModules}),
     TypeaheadModule.forRoot(),
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    PaginationModule.forRoot()
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]

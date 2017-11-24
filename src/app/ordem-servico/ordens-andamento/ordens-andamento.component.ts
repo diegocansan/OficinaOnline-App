@@ -20,6 +20,10 @@ import {OrdemService} from '../ordemservico.service'
 
 export class OrdensAndamentoComponent implements OnInit {
   ordens: Ordem[] = []
+  totalItems = 1;
+  currentPage =1;
+  smallnumPages = 0;
+  filter: string
 
   constructor(private ordemService: OrdemService) { }
 
@@ -34,5 +38,20 @@ export class OrdensAndamentoComponent implements OnInit {
   atualizar(){
     this.ordemService.buscarPorStatus('3')
       .subscribe(ordens => this.ordens = ordens)
+    this.setPageNumber()
+  }
+
+  setPage(pageNo: number): void {
+    this.currentPage = pageNo;
+  }
+
+  setPageNumber() {
+    if(this.ordens && this.ordens.length > 0)
+      this.totalItems = this.ordens.length
+  }
+
+  pageChanged(event: any): void {
+    console.log('Page changed to: ' + event.page);
+    console.log('Number items per page: ' + event.itemsPerPage);
   }
 }

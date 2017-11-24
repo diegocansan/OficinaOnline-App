@@ -1,10 +1,16 @@
 <div class="row">
-        <div *ngFor="let ordem of ordens" class="col-sm-6 col-xs-12">
+
+        <div *ngFor="let ordem of ordens | paginate: { itemsPerPage: 4, currentPage: p }" class="col-sm-6 col-xs-12">
             <oo-ordem [ordem]="ordem" (deletado)="onDelete($event)"></oo-ordem>
         </div>
+
         <div *ngIf="ordens?.length === 0" class="col-xs-12">
           <p class="lead text-center">
             Não foram encontradas ordens de serviço.
           </p>
+        </div>
+
+        <div class="col-md-12 text-center" *ngIf="ordens?.length > 0">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
   </div>

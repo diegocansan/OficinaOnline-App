@@ -38,8 +38,6 @@ import {CadServicoModalComponent } from '../../shared/servico-modal/servico-moda
 export class CadastroOrdemServicoComponent implements OnInit {
 
   ordemForm: FormGroup
-
-  cpf: String
   ordem: Ordem
 
   nomeClienteSelecionado: String;
@@ -96,7 +94,7 @@ export class CadastroOrdemServicoComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.ordem = {id:null,data:"", status:{id:"1",status:"Pendente"}, cliente:{id:null,nome:"",cpf:"",email:"",telefone:null,veiculos:[]}, veiculo:null,produtos:[],servicos:[]}
+      this.ordem = {id:null,data:"", status:{id:"1",status:"Pendente"}, cliente:{id:null,nome:"",cpf:"",email:"",telefone:null,veiculos:[]}, veiculo:{id:null,placa:"",modelo:"",fabricante:"",ano:"",cor:""},produtos:[],servicos:[]}
 
       this.disableInput = true;
 
@@ -104,7 +102,10 @@ export class CadastroOrdemServicoComponent implements OnInit {
         nome: this.formBuilder.control(this.ordem.cliente.nome, Validators.required),
         cpf: this.formBuilder.control(this.ordem.cliente.cpf,Validators.required),
         email: this.formBuilder.control(this.ordem.cliente.email),
-        telefone: this.formBuilder.control(this.ordem.cliente.telefone)
+        telefone: this.formBuilder.control(this.ordem.cliente.telefone),
+        placa: this.formBuilder.control(this.ordem.veiculo.placa, Validators.required),
+        modelo: this.formBuilder.control(this.ordem.veiculo.modelo),
+        fabricante: this.formBuilder.control(this.ordem.veiculo.fabricante)
       })
 
       let id = this.route.snapshot.paramMap.get("id")
@@ -179,7 +180,7 @@ export class CadastroOrdemServicoComponent implements OnInit {
     typeaheadClienteOnSelect(e: TypeaheadMatch): void {
       this.addClienteOrdem(e.item)
       this.nomeClienteSelecionado = ""
-      this.ordem.veiculo = null
+      this.ordem.veiculo = {id:null,placa:"",modelo:"",fabricante:"",ano:"",cor:""}
     }
 
     addClienteOrdem(cliente: Cliente){

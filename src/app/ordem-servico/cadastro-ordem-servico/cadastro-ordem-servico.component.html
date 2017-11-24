@@ -39,25 +39,37 @@
           <input class="form-control" disabled="true" formControlName="telefone" [(ngModel)]=ordem.cliente.telefone placeholder="Telefone">
         </div>
       </div>
+      <div class="row margin-top-5">
+        <div class="col-md-4 col-sm-6">
+          <input [(ngModel)]="veiculoSelecionado"
+                 [typeahead]="dataSourceVeiculos"
+                 (typeaheadOnSelect)="typeaheadVeiculoOnSelect($event)"
+                 (typeaheadLoading)="changeVeiculoTypeaheadLoading($event)"
+                 (typeaheadNoResults)="changeVeiculoTypeaheadNoResults($event)"
+                 (typeaheadOnSelect)="typeaheadVeiculoOnSelect($event)"
+                 placeholder="Buscar veículo do cliente pela placa"
+                 typeaheadOptionField="placa"
+                 class="form-control"
+                 [ngModelOptions]="{standalone: true}">
+                 <div *ngIf="veiculoTypeaheadLoading===true">Loading...</div>
+                 <div *ngIf="veiculoTypeaheadNoResults===true">&#10060; Nenhum veículo encontrado!</div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <button class="btn btn-success" (click)=showModalCadVeiculo()><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Veiculo</button>
+        </div>
+      </div>
+      <div class="row margin-top-5" *ngIf="ordem?.veiculo" >
+        <div class="col-md-2 col-sm-6">
+          <input class="form-control" disabled="true" formControlName="placa" [(ngModel)]=ordem.veiculo.placa placeholder="Placa">
+        </div>
+        <div class="col-md-2 col-sm-6">
+          <input class="form-control" disabled="true" formControlName="modelo" [(ngModel)]=ordem.veiculo.modelo placeholder="Modelo">
+        </div>
+        <div class="col-md-2 col-sm-6">
+          <input class="form-control" disabled="true" formControlName="fabricante" [(ngModel)]=ordem.veiculo.fabricante placeholder="Fabricante">
+        </div>
+      </div>
     </form>
-    <div class="row margin-top-5">
-      <div class="col-md-4 col-sm-6">
-        <input [(ngModel)]="veiculoSelecionado"
-               [typeahead]="dataSourceVeiculos"
-               (typeaheadOnSelect)="typeaheadVeiculoOnSelect($event)"
-               (typeaheadLoading)="changeVeiculoTypeaheadLoading($event)"
-               (typeaheadNoResults)="changeVeiculoTypeaheadNoResults($event)"
-               (typeaheadOnSelect)="typeaheadVeiculoOnSelect($event)"
-               placeholder="Buscar veículo do cliente pela placa"
-               typeaheadOptionField="placa"
-               class="form-control">
-               <div *ngIf="veiculoTypeaheadLoading===true">Loading...</div>
-               <div *ngIf="veiculoTypeaheadNoResults===true">&#10060; Nenhum veículo encontrado!</div>
-      </div>
-      <div class="col-md-3 col-sm-6">
-        <button class="btn btn-success" (click)=showModalCadVeiculo()><i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;Veiculo</button>
-      </div>
-    </div>
     <div class="row margin-top-5" >
       <div class="col-md-4">
           <input [(ngModel)]="nomeProdutoSelecionado"
