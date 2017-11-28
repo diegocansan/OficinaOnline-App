@@ -10,6 +10,13 @@
         </div>
       </div>
       <div class="row">
+        <select [(ngModel)]="statusSelected" [ngModelOptions]="{standalone: true}">
+          <option *ngFor="let status of statusOrdem" (value)="status">
+              {{status.status}}
+          </option>
+        </select>
+      </div>
+      <div class="row margin-top-5">
         <div class="col-md-4">
             <input [(ngModel)]="nomeClienteSelecionado"
              [typeahead]="dataSourceClientes"

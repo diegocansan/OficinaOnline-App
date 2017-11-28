@@ -11,6 +11,9 @@ import {Router, ActivatedRoute} from '@angular/router'
 import {Ordem} from '../ordem/ordem.model'
 import {OrdemService} from '../ordemservico.service'
 
+import {StatusOrdem} from '../ordem/status.model'
+import {StatusOrdemService} from '../statusordem.service'
+
 import {Cliente} from  '../../clientes/cliente/cliente.model'
 import {ClientesService} from  '../../clientes/clientes.service'
 
@@ -39,6 +42,8 @@ export class CadastroOrdemServicoComponent implements OnInit {
 
   ordemForm: FormGroup
   ordem: Ordem
+  statusOrdem: StatusOrdem []
+  statusSelected: StatusOrdem
 
   nomeClienteSelecionado: String;
   clienteTypeaheadLoading: boolean;
@@ -63,15 +68,16 @@ export class CadastroOrdemServicoComponent implements OnInit {
   disableInput: boolean;
 
   constructor(private ordemService: OrdemService,
-    private clientesService: ClientesService,
-    private veiculosService: VeiculosService,
-    private produtosService: ProdutosService,
-    private servicosService: ServicosService,
-    private notificationService: NotificationService,
-    private router: Router,
-    private route : ActivatedRoute,
-    private formBuilder: FormBuilder,
-    private dialogService:DialogService) {
+              private StatusOrdemService: StatusOrdemService,
+              private clientesService: ClientesService,
+              private veiculosService: VeiculosService,
+              private produtosService: ProdutosService,
+              private servicosService: ServicosService,
+              private notificationService: NotificationService,
+              private router: Router,
+              private route : ActivatedRoute,
+              private formBuilder: FormBuilder,
+              private dialogService:DialogService) {
 
 
       this.dataSourceClientes = Observable.create((observer: any) => {
@@ -94,7 +100,7 @@ export class CadastroOrdemServicoComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.ordem = {id:null,data:"", status:{id:"1",status:"Pendente"}, cliente:{id:null,nome:"",cpf:"",email:"",telefone:null,veiculos:[]}, veiculo:{id:null,placa:"",modelo:"",fabricante:"",ano:"",cor:""},produtos:[],servicos:[]}
+      this.ordem = {id:null,data:"", status:{id:"",status:""}, cliente:{id:null,nome:"",cpf:"",email:"",telefone:null,veiculos:[]}, veiculo:{id:null,placa:"",modelo:"",fabricante:"",ano:"",cor:""},produtos:[],servicos:[]}
 
       this.disableInput = true;
 
@@ -112,6 +118,7 @@ export class CadastroOrdemServicoComponent implements OnInit {
       if(id)
         this.buscar(id)
 
+      this.carregaStatus()
     }
 
     buscar(id:string){
@@ -122,12 +129,13 @@ export class CadastroOrdemServicoComponent implements OnInit {
         this.ordemForm.controls['cpf'].setValue(this.ordem.cliente.cpf)
         this.ordemForm.controls['email'].setValue(this.ordem.cliente.email)
         this.ordemForm.controls['telefone'].setValue(this.ordem.cliente.telefone)
+
+        this.statusSelected = this.ordem.status
       })
     }
 
     btnSalvar(ordem: Ordem){
-
-      console.log(new Date().toJSON())
+      console.log(this.statusSelected)
 
       this.ordem.data = new Date().toJSON()
 
@@ -159,6 +167,21 @@ export class CadastroOrdemServicoComponent implements OnInit {
         this.notificationService.notify(`Ordem de Serviço alterada!`)
       })
     }
+
+    /* ------------- STATUS ------------------ */
+    carregaStatus(){
+      this.StatusOrdemService.buscarTodos()
+        .subscribe( (retorno) => {
+          this.statusOrdem = retorno
+          this.statusSelected = this.ordem.status
+
+        })
+    }
+    setStatus(status: StatusOrdem){
+        this.ordem.status = status
+    }
+
+    /* -------------- FIM STATUS ------------- */
 
 
 
@@ -231,8 +254,6 @@ export class CadastroOrdemServicoComponent implements OnInit {
         else
           this.notificationService.notify(`Veículo não encontrado!`)
       }
-
-
       /*----------------FIM VEICULO --------------------------*/
 
 

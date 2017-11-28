@@ -10,6 +10,7 @@ import {InputComponent} from './input/input.component'
 import {RadioComponent} from './radio/radio.component'
 
 import {OrdemService} from '../ordem-servico/ordemservico.service'
+import {StatusOrdemService} from '../ordem-servico/statusordem.service'
 import {ProdutosService} from '../cadastro-produtos/produtos.service'
 import {ServicosService} from '../servicos/servicos.service'
 import {UsuariosService} from '../usuarios/usuarios.service'
@@ -29,7 +30,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule:SharedModule,
-      providers:[OrdemService,ProdutosService,ServicosService,UsuariosService,ClientesService,VeiculosService,NotificationService],
+      providers:[OrdemService,StatusOrdemService,ProdutosService,ServicosService,UsuariosService,ClientesService,VeiculosService,NotificationService],
         }
   }
 }

@@ -12,30 +12,24 @@ import {StatusOrdem} from "./ordem/status.model"
 import {ErrorHandler} from '../app.error-handler'
 
 @Injectable()
-export class StatuOrdemService {
+export class StatusOrdemService {
 
     constructor(private http: Http){}
 
     buscarTodos(search?: string): Observable<StatusOrdem[]> {
       if(!search){
-        return this.http.get(`${REST_API}/ordemServicos`)
+        return this.http.get(`${REST_API}/statusOrdem`)
                         .map(response => response.json())
                         .catch(ErrorHandler.handleError)
       }else{
-        return this.http.get(`${REST_API}/ordemServicos/status/${search.toString()}`)
+        return this.http.get(`${REST_API}/statusOrdem/porstatus/${search.toString()}`)
                         .map(response => response.json())
                         .catch(ErrorHandler.handleError)
       }
     }
 
-    buscarPorStatus(id: string): Observable<StatusOrdem[]>{
-      return this.http.get(`${REST_API}/ordemServicos/status/${id.toString()}`)
-                      .map(response => response.json())
-                      .catch(ErrorHandler.handleError)
-    }
-
     byId(id: string): Observable<StatusOrdem>{
-      return this.http.get(`${REST_API}/ordemServicos/${id}`)
+      return this.http.get(`${REST_API}/statusOrdem/${id}`)
         .map(response => response.json())
         .catch(ErrorHandler.handleError)
     }
@@ -43,7 +37,7 @@ export class StatuOrdemService {
     salvar(status: StatusOrdem): Observable<StatusOrdem> {
       const headers = new Headers()
       headers.append('Content-Type', 'application/json')
-      return this.http.post(`${REST_API}/ordemServicos/insere`,
+      return this.http.post(`${REST_API}/statusOrdem/insere`,
                             JSON.stringify(status),
                             new RequestOptions({headers: headers}))
                         .map(response=> response.json() as StatusOrdem)
@@ -53,8 +47,8 @@ export class StatuOrdemService {
     alterar(status: StatusOrdem):Observable<Boolean>{
       const headers = new Headers()
       headers.append('Content-Type', 'application/json')
-      return this.http.put(`${REST_API}/ordemServicos/altera/${status.id}`,
-                            JSON.stringify(ordem),
+      return this.http.put(`${REST_API}/statusOrdem/altera/${status.id}`,
+                            JSON.stringify(status),
                             new RequestOptions({headers: headers}))
                       .map(response => response.ok)
                       .catch(ErrorHandler.handleError)
@@ -63,7 +57,7 @@ export class StatuOrdemService {
     remover(status: StatusOrdem):Observable<Boolean>{
       const headers = new Headers()
       headers.append('Content-Type', 'application/json')
-      return this.http.delete(`${REST_API}/ordemServicos/delete/${status.id}`,
+      return this.http.delete(`${REST_API}/statusOrdem/delete/${status.id}`,
                               new RequestOptions({headers: headers}))
                               .map(response => response.ok)
                               .catch(ErrorHandler.handleError)
