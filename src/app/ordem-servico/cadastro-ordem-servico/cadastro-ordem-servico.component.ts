@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
-import {FormGroup, FormBuilder,Validators, AbstractControl} from '@angular/forms'
+import {FormsModule, FormGroup, FormBuilder,Validators, AbstractControl} from '@angular/forms'
 import { DialogService } from "ng2-bootstrap-modal";
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { TooltipModule } from 'ngx-bootstrap';
@@ -117,7 +117,9 @@ export class CadastroOrdemServicoComponent implements OnInit {
       let id = this.route.snapshot.paramMap.get("id")
       if(id)
         this.buscar(id)
+    }
 
+    ngAfterViewInit(){
       this.carregaStatus()
     }
 
@@ -129,14 +131,10 @@ export class CadastroOrdemServicoComponent implements OnInit {
         this.ordemForm.controls['cpf'].setValue(this.ordem.cliente.cpf)
         this.ordemForm.controls['email'].setValue(this.ordem.cliente.email)
         this.ordemForm.controls['telefone'].setValue(this.ordem.cliente.telefone)
-
-        this.statusSelected = this.ordem.status
       })
     }
 
     btnSalvar(ordem: Ordem){
-      console.log(this.statusSelected)
-
       this.ordem.data = new Date().toJSON()
 
       if(this.ordem.id != null)
@@ -173,14 +171,13 @@ export class CadastroOrdemServicoComponent implements OnInit {
       this.StatusOrdemService.buscarTodos()
         .subscribe( (retorno) => {
           this.statusOrdem = retorno
-          this.statusSelected = this.ordem.status
-
+          this.statusSelected = this.statusOrdem.find((noArray)=> noArray.id == this.ordem.status.id)
         })
     }
+
     setStatus(status: StatusOrdem){
         this.ordem.status = status
     }
-
     /* -------------- FIM STATUS ------------- */
 
 
@@ -314,8 +311,7 @@ export class CadastroOrdemServicoComponent implements OnInit {
 
 
           /* ------------ SERVIÇOS ------------------------ */
-          getServicosAsObservable(token: string): Observable<Servico[]> {
-            console.log(token)
+          getServicosAsObservable(token: string): Observable<Servico[]>{
             return this.servicosService
             .buscarTodos(token)
             .catch(error=>Observable.from([]))
@@ -330,7 +326,6 @@ export class CadastroOrdemServicoComponent implements OnInit {
           }
 
           typeaheadServicoOnSelect(e: TypeaheadMatch): void {
-            console.log('Selected value: ', e);
             this.addServicoOrdem(e.item)
             this.nomeServicoSelecionado = ""
           }

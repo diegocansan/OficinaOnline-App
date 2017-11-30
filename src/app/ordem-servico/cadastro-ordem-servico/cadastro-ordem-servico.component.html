@@ -3,19 +3,22 @@
 
 <section class="content">
   <section class="invoice">
-    <form [formGroup]="ordemForm" novalidate>
+
       <div class="row">
         <div class="col-xs-12">
           <p class="lead">Cadastro de Ordem de Serviço</p>
         </div>
       </div>
       <div class="row">
-        <select [(ngModel)]="statusSelected" [ngModelOptions]="{standalone: true}">
-          <option *ngFor="let status of statusOrdem" (value)="status">
-              {{status.status}}
-          </option>
-        </select>
+        <div class="col-md-4">
+          <select [ngModel]="statusSelected" (ngModelChange)="setStatus($event)">
+            <option [ngValue]="i" *ngFor="let i of statusOrdem">
+              {{i.status}}
+            </option>
+          </select>
+        </div>
       </div>
+        <form [formGroup]="ordemForm" novalidate>
       <div class="row margin-top-5">
         <div class="col-md-4">
             <input [(ngModel)]="nomeClienteSelecionado"
