@@ -1,11 +1,15 @@
-<div class="place-info-box" [@clienteAppeared]="clienteState">
+<div class="servicos-list col-md-8" [@clienteAppeared]="clienteState">
   <a [routerLink]="['/mantemCliente', cliente.id]">
-    <div>
-      <span class="place-info-box-text">Nome: {{cliente.nome}}</span>
-      <span class="place-info-box-text">CPF: {{cliente.cpf}}</span>
-      <span class="place-info-box-text">Email: {{cliente.email}}</span>
-      <span class="place-info-box-text">Fone: {{cliente.telefone}}</span>
+    <div class="row">
+      <div class="col-md-12">
+        <span class="place-info-box-text">Nome: {{cliente.nome}}</span>
+        <span class="place-info-box-text">CPF: {{cliente.cpf}}</span>
+        <span class="place-info-box-text">Email: {{cliente.email}}</span>
+        <span class="place-info-box-text">Fone: {{cliente.telefone}}</span>
+      </div>
     </div>
   </a>
-  <button class="btn btn-danger fa fa-times " aria-hidden="true" (click)="showModal(cliente)"> </button>
+  <div class="btn-veiculo-list">
+    <button class="btn btn-danger fa fa-times" aria-hidden="true" (click)="showModal(cliente)"> </button>
+  </div>
 </div>

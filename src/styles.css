@@ -39,6 +39,13 @@
     top: 15px;
  }
 
+ .btn-veiculo-list {
+    border-top: 1px solid #ddd;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+
 .servicos-list {
   color: #555;
   display:inline-block;

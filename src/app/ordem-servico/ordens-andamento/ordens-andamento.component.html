@@ -9,8 +9,9 @@
             Não foram encontradas ordens de serviço.
           </p>
         </div>
-
-        <div class="col-md-12 text-center" *ngIf="ordens?.length > 0">
-          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        <div class="row margin-top-5">
+          <div class="col-md-12 text-center " *ngIf="ordens?.length > 0">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
         </div>
   </div>
