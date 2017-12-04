@@ -25,9 +25,13 @@
         <li routerLinkActive="active"><a [routerLink]="['/ordemServico']">Ordens Serviço</a></li>
         <li routerLinkActive="active"><a [routerLink]="['/about']">Sobre</a></li>
       </ul>
-
     </div>
+
     <!-- /.navbar-collapse -->
+
+    <div class="center pull-rigth" *ngIf="usuarioCliente() || usuarioAdminsitrador()">
+      <button class="btn btn-danger" aria-hidden="true" (click)="logOut()">Logout </button>
+    </div>
 
   </div>
 </nav>

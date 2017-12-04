@@ -4,6 +4,7 @@ import {Observable } from 'rxjs/Observable';
 import {REST_API} from '../app.api'
 import {Usuario} from '../usuarios/usuario/usuario.model'
 import {ErrorHandler} from '../app.error-handler'
+import {Router} from '@angular/router';
 
 import 'rxjs/add/operator/map'
 
@@ -11,7 +12,8 @@ import 'rxjs/add/operator/map'
 export class AuthenticationService {
     usuario:Usuario
 
-    constructor(private http: Http) { }
+    constructor(private http: Http,
+                private router: Router) { }
 
     login(username: string, password: string) {
         this.usuario = {id:null,login:username,senha:password,token:""}
@@ -29,5 +31,6 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+        this.router.navigate(['/login'])
     }
 }
