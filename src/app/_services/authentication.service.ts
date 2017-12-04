@@ -1,8 +1,9 @@
-﻿import { Injectable } from '@angular/core';
-import { Http, Headers, Response, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+﻿import {Injectable } from '@angular/core';
+import {Http, Headers, Response, RequestOptions } from '@angular/http';
+import {Observable } from 'rxjs/Observable';
 import {REST_API} from '../app.api'
 import {Usuario} from '../usuarios/usuario/usuario.model'
+import {ErrorHandler} from '../app.error-handler'
 
 import 'rxjs/add/operator/map'
 
@@ -20,7 +21,9 @@ export class AuthenticationService {
         return this.http.post(`${REST_API}/usuarios/auth`,
                               JSON.stringify(this.usuario),
                               new RequestOptions({headers: headers}))
-                        .map(response=> localStorage.setItem('currentUser', JSON.stringify(response)))
+                        .map(response=> response.json() as Usuario)
+                        .map(usuario => localStorage.setItem('currentUser', JSON.stringify(usuario)))
+                        .catch(error => ErrorHandler.handleError(error))
     }
 
     logout() {

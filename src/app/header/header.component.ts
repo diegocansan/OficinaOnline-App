@@ -1,19 +1,34 @@
 import { Component, OnInit } from '@angular/core';
+import {Usuario} from '../usuarios/usuario/usuario.model'
+
 
 @Component({
   selector: 'oo-header',
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
+  usuario: Usuario
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  usuarioLogado(): boolean
+  usuarioAdminsitrador(): boolean
   {
-      return true;
+      if(localStorage.getItem('currentUser') != null){
+        this.usuario = JSON.parse(localStorage.getItem('currentUser'))
+        return this.usuario.id == "2"
+      }
+      return false
   }
 
+  usuarioCliente(): boolean
+  {
+      if(localStorage.getItem('currentUser') != null){
+        this.usuario = JSON.parse(localStorage.getItem('currentUser'))
+        return this.usuario.id == "3"
+      }
+      return false
+  }
 }

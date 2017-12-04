@@ -34,39 +34,40 @@ export const ROUTES: Routes = [
 
   {path: 'login', component: LoginComponent },
 
-  {path: 'ordemServico', component: OrdemServicoComponent,
+  {path: 'ordemServico', component: OrdemServicoComponent, canActivate:[AuthGuard],
     children: [
     {path: '', redirectTo: 'pendentes', pathMatch: 'full'},
-    {path: 'pendentes', component: OrdensPendentesComponent},
-    {path: 'aprovadas', component: OrdensAprovadasComponent},
-    {path: 'andamento', component: OrdensAndamentoComponent},
-    {path: 'concluidas', component: OrdensConcluidasComponent}
+    {path: 'pendentes', component: OrdensPendentesComponent, canActivate:[AuthGuard]},
+    {path: 'aprovadas', component: OrdensAprovadasComponent, canActivate:[AuthGuard]},
+    {path: 'andamento', component: OrdensAndamentoComponent, canActivate:[AuthGuard]},
+    {path: 'concluidas', component: OrdensConcluidasComponent, canActivate:[AuthGuard]}
     ]
   },
-  {path: 'mantemOrdem', component: CadastroOrdemServicoComponent},
-  {path: 'mantemOrdem/:id', component: CadastroOrdemServicoComponent},
+  {path: 'mantemOrdem', component: CadastroOrdemServicoComponent, canActivate:[AuthGuard]},
+  {path: 'mantemOrdem/:id', component: CadastroOrdemServicoComponent, canActivate:[AuthGuard]},
 
 
   {path: 'usuarios', component: UsuariosComponent, canActivate:[AuthGuard]},
-  {path: 'mantemUsuario', component: CadastroUsuarioComponent},
-  {path: 'mantemUsuario/:id', component: CadastroUsuarioComponent},
+  {path: 'mantemUsuario', component: CadastroUsuarioComponent, canActivate:[AuthGuard]},
+  {path: 'mantemUsuario/:id', component: CadastroUsuarioComponent, canActivate:[AuthGuard]},
 
-  {path: 'produtos', component: CadastroProdutosComponent},
-  {path: 'novoProduto/:id', component: NovoProdutoComponent},
-  {path: 'novoProduto', component: NovoProdutoComponent},
+  {path: 'produtos', component: CadastroProdutosComponent, canActivate:[AuthGuard]},
+  {path: 'novoProduto/:id', component: NovoProdutoComponent, canActivate:[AuthGuard]},
+  {path: 'novoProduto', component: NovoProdutoComponent, canActivate:[AuthGuard]},
 
-  {path: 'servicos', component: ServicosComponent},
-  {path: 'mantemServico', component: CadastroServicoComponent},
-  {path: 'mantemServico/:id', component: CadastroServicoComponent},
+  {path: 'servicos', component: ServicosComponent, canActivate:[AuthGuard]},
+  {path: 'mantemServico', component: CadastroServicoComponent, canActivate:[AuthGuard]},
+  {path: 'mantemServico/:id', component: CadastroServicoComponent, canActivate:[AuthGuard]},
 
-  {path: 'clientes', component: ClientesComponent},
-  {path: 'mantemCliente', component: CadastroClienteComponent},
-  {path: 'mantemCliente/:id', component: CadastroClienteComponent},
+  {path: 'clientes', component: ClientesComponent, canActivate:[AuthGuard]},
+  {path: 'mantemCliente', component: CadastroClienteComponent, canActivate:[AuthGuard]},
+  {path: 'mantemCliente/:id', component: CadastroClienteComponent, canActivate:[AuthGuard]},
 
-  {path: 'veiculos', component: VeiculosComponent},
-  {path: 'mantemVeiculo', component: CadastroVeiculoComponent},
-  {path: 'mantemVeiculo/:id', component: CadastroVeiculoComponent},
+  {path: 'veiculos', component: VeiculosComponent, canActivate:[AuthGuard]},
+  {path: 'mantemVeiculo', component: CadastroVeiculoComponent, canActivate:[AuthGuard]},
+  {path: 'mantemVeiculo/:id', component: CadastroVeiculoComponent, canActivate:[AuthGuard]},
 
-  {path: 'about', loadChildren: './about/about.module#AboutModule'},
+  {path: 'about', loadChildren: './about/about.module#AboutModule', canActivate:[AuthGuard]},
+  
   {path: '**', component: NotFoundComponent}
 ]
