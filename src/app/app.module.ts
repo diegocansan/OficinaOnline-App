@@ -44,6 +44,11 @@ import { OrdensAndamentoComponent } from './ordem-servico/ordens-andamento/orden
 import { OrdensConcluidasComponent } from './ordem-servico/ordens-concluidas/ordens-concluidas.component';
 import { CadastroOrdemServicoComponent } from './ordem-servico/cadastro-ordem-servico/cadastro-ordem-servico.component';
 
+import { LoginComponent } from './login/login.component'
+import { AlertComponent } from './_directives/index';
+import { AuthGuard } from './_guards/index';
+import { AlertService, AuthenticationService, UserService } from './_services/index';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +77,9 @@ import { CadastroOrdemServicoComponent } from './ordem-servico/cadastro-ordem-se
     OrdensAprovadasComponent,
     OrdensAndamentoComponent,
     OrdensConcluidasComponent,
-    CadastroOrdemServicoComponent
+    CadastroOrdemServicoComponent,
+    LoginComponent,
+    AlertComponent
 
    ],
   imports: [
@@ -87,7 +94,14 @@ import { CadastroOrdemServicoComponent } from './ordem-servico/cadastro-ordem-se
     TooltipModule.forRoot(),
     PaginationModule.forRoot()
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'pt-BR'},
+    AuthGuard,
+    AlertService,
+    AuthenticationService,
+    UserService
+
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
