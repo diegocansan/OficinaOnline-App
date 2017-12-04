@@ -48,6 +48,13 @@ import { LoginComponent } from './login/login.component'
 import { AlertComponent } from './_directives/index';
 import { AuthGuard } from './_guards/index';
 import { AlertService, AuthenticationService, UserService } from './_services/index';
+import { OrdemServicoClienteComponent } from './ordem-servico/ordem-servico-cliente/ordem-servico-cliente.component';
+import { OrdensAndamentoClienteComponent } from './ordem-servico/ordem-servico-cliente/ordens-andamento-cliente.component';
+import { OrdensAprovadasClienteComponent } from './ordem-servico/ordem-servico-cliente/ordens-aprovadas-cliente.component';
+import { OrdensConcluidasClienteComponent } from './ordem-servico/ordem-servico-cliente/ordens-concluidas-cliente.component';
+import { OrdensPendentesClienteComponent } from './ordem-servico/ordem-servico-cliente/ordens-pendentes-cliente.component';
+
+
 
 @NgModule({
   declarations: [
@@ -79,7 +86,12 @@ import { AlertService, AuthenticationService, UserService } from './_services/in
     OrdensConcluidasComponent,
     CadastroOrdemServicoComponent,
     LoginComponent,
-    AlertComponent
+    AlertComponent,
+    OrdemServicoClienteComponent,
+    OrdensAprovadasClienteComponent,
+    OrdensAndamentoClienteComponent,
+    OrdensConcluidasClienteComponent,
+    OrdensPendentesClienteComponent,
 
    ],
   imports: [

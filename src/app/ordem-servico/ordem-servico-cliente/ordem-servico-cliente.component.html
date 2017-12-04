@@ -1,0 +1,25 @@
+<!-- INíCIO do CONTEÚDO -->
+  <section class="content-header">
+    <div class="box-footer detail-footer">
+      <a class="col-md-3" routerLinkActive="detail-active" [routerLink]="['pendentes']">
+        Pendentes
+      </a>
+      <a  class="col-md-3" routerLinkActive="detail-active" [routerLink]="['aprovadas']">
+        Aprovadas
+      </a>
+      <a  class="col-md-3" routerLinkActive="detail-active" [routerLink]="['andamento']">
+        Em Andamento
+      </a>
+      <a  class="col-md-3" routerLinkActive="detail-active" [routerLink]="['concluidas']">
+        Concluídas
+      </a>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="row">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+
+      <!-- FIM  do CONTEÚDO -->

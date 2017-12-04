@@ -25,6 +25,14 @@ import {OrdensConcluidasComponent} from './ordem-servico/ordens-concluidas/orden
 import {OrdensAprovadasComponent} from './ordem-servico/ordens-aprovadas/ordens-aprovadas.component'
 import {CadastroOrdemServicoComponent} from './ordem-servico/cadastro-ordem-servico/cadastro-ordem-servico.component'
 
+import { OrdemServicoClienteComponent } from './ordem-servico/ordem-servico-cliente/ordem-servico-cliente.component';
+import { OrdensAndamentoClienteComponent } from './ordem-servico/ordem-servico-cliente/ordens-andamento-cliente.component';
+import { OrdensAprovadasClienteComponent } from './ordem-servico/ordem-servico-cliente/ordens-aprovadas-cliente.component';
+import { OrdensConcluidasClienteComponent } from './ordem-servico/ordem-servico-cliente/ordens-concluidas-cliente.component';
+import { OrdensPendentesClienteComponent } from './ordem-servico/ordem-servico-cliente/ordens-pendentes-cliente.component';
+
+
+
 import {NotFoundComponent} from './not-found/not-found.component'
 
 import { AuthGuard } from './_guards/index';
@@ -67,7 +75,20 @@ export const ROUTES: Routes = [
   {path: 'mantemVeiculo', component: CadastroVeiculoComponent, canActivate:[AuthGuard]},
   {path: 'mantemVeiculo/:id', component: CadastroVeiculoComponent, canActivate:[AuthGuard]},
 
+  {path: 'cliente/ordemServico', component: OrdemServicoClienteComponent, canActivate:[AuthGuard],
+    children: [
+    {path: '', redirectTo: 'pendentes', pathMatch: 'full'},
+    {path: 'pendentes', component: OrdensPendentesClienteComponent, canActivate:[AuthGuard]},
+    {path: 'aprovadas', component: OrdensAprovadasClienteComponent, canActivate:[AuthGuard]},
+    {path: 'andamento', component: OrdensAndamentoClienteComponent, canActivate:[AuthGuard]},
+    {path: 'concluidas', component: OrdensConcluidasClienteComponent, canActivate:[AuthGuard]}
+    ]
+  },
+  {path: 'cliente/detalheOrdem/:id', component: CadastroOrdemServicoComponent, canActivate:[AuthGuard]},
+
+
+
   {path: 'about', loadChildren: './about/about.module#AboutModule', canActivate:[AuthGuard]},
-  
+
   {path: '**', component: NotFoundComponent}
 ]
