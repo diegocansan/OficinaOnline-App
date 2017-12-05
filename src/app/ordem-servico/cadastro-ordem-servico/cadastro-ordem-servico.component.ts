@@ -135,12 +135,13 @@ export class CadastroOrdemServicoComponent implements OnInit {
     }
 
     btnSalvar(ordem: Ordem){
-      this.ordem.data = new Date().toJSON()
 
       if(this.ordem.id != null)
         this.alterar(this.ordem)
-      else
+      else{
+        this.ordem.data = new Date().toJSON()
         this.salvar(this.ordem)
+      }
 
     }
 
@@ -154,7 +155,8 @@ export class CadastroOrdemServicoComponent implements OnInit {
 
     alterar(ordem: Ordem){
 
-      this.ordem.data   =  new Date(new Date(this.ordem.data).toISOString()).toJSON()
+      this.ordem.data   =  new Date(String(this.ordem.data).replace("dez","dec").replace("out","oct").replace("ago","aug").replace("fev","feb")
+                                                           .replace("abr","apr").replace("mai","may").replace("set","sep")).toJSON()
       this.ordem.cliente = ordem.cliente
       this.ordem.servicos = ordem.servicos
       this.ordem.produtos = ordem.produtos

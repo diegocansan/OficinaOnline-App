@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12">
         <span class="place-info-box-text">ID: {{ordem?.id}}</span>
-        <span class="place-info-box-text">Data: {{ordem?.data | date:'dd/MM/yyyy'}}</span>
+        <span class="place-info-box-text">Data: {{stringAsDate(ordem?.data) | date:'dd/MM/yyyy':'BRL'}}</span>
         <span class="place-info-box-text">Status: {{ordem?.status.status}}</span>
         <span class="place-info-box-text">Veículo: {{ordem?.veiculo.modelo}}</span>
         <span class="place-info-box-text">Cliente: {{ordem?.cliente.nome}}</span>

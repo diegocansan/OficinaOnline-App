@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, LOCALE_ID } from '@angular/core';
 import {Router} from '@angular/router'
 import {trigger, state, style, transition, animate} from '@angular/animations'
 import {NotificationService} from '../../shared/messages/notification.service'
@@ -6,6 +6,7 @@ import {Ordem} from './ordem.model'
 import {OrdemService} from '../ordemservico.service'
 import {ConfirmModalComponent} from '../../shared/confirm-modal/confirm-modal.component'
 import { DialogService } from "ng2-bootstrap-modal";
+
 
 @Component({
   selector: 'oo-ordem',
@@ -36,7 +37,6 @@ export class OrdemComponent implements OnInit {
   ngOnInit() {
   }
 
-
   remove(ordem: Ordem)
   {
     this.ordemService.remover(ordem)
@@ -59,6 +59,11 @@ export class OrdemComponent implements OnInit {
             if(isConfirmed)
               this.remove(ordem)
       });
+    }
+
+    stringAsDate(dateStr) {
+      dateStr = String(dateStr).replace("dez","dec").replace("out","oct").replace("ago","aug").replace("fev","feb").replace("abr","apr").replace("mai","may").replace("set","sep")
+      return new Date(dateStr).toJSON()
     }
 
 }

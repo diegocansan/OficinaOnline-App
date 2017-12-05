@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   {
       if(localStorage.getItem('currentUser') != null){
         this.usuario = JSON.parse(localStorage.getItem('currentUser'))
-        return this.usuario.id == "5"
+        return this.usuario.id == "2"
       }
       return false
   }
@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
   {
       if(localStorage.getItem('currentUser') != null){
         this.usuario = JSON.parse(localStorage.getItem('currentUser'))
-        return this.usuario.id == "4"
+        return this.usuario.id == "1"
       }
       return false
   }
