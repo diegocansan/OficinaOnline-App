@@ -92,5 +92,5 @@ export const ROUTES: Routes = [
 
   {path: 'about', loadChildren: './about/about.module#AboutModule', canActivate:[AuthGuard]},
 
-  {path: '**', component: NotFoundComponent}
+  {path: '**', component: NotFoundComponent, canActivate:[AuthGuard]}
 ]
