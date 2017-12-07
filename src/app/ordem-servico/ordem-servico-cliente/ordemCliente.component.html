@@ -1,5 +1,5 @@
 <div class="servicos-list col-md-8" [@ordemAppeared]="ordemState">
-  <a [routerLink]="['/mantemOrdem', ordem.id]">
+  <a [routerLink]="['/detalheOrdem', ordem.id]">
     <div class="row">
       <div class="col-md-12">
         <span class="place-info-box-text">ID: {{ordem?.id}}</span>
@@ -10,7 +10,4 @@
       </div>
     </div>
   </a>
-  <div class="btn-veiculo-list" *ngIf="usuarioAdminsitrador()">
-    <button class="btn btn-danger fa fa-times" aria-hidden="true" (click)="showModal(ordem)"> </button>
-  </div>
 </div>

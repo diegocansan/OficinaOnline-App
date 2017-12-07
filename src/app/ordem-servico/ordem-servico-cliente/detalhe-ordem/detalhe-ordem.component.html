@@ -1,0 +1,74 @@
+<section class="content-header">
+</section>
+
+<section class="content">
+  <section class="invoice">
+
+      <div class="row">
+        <div class="col-xs-12">
+          <p class="lead">Acompanhamento de Ordem de Serviço</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <select [ngModel]="statusSelected" disabled="true">
+            <option [ngValue]="i" *ngFor="let i of statusOrdem">
+              {{i.status}}
+            </option>
+          </select>
+        </div>
+      </div>
+        <form [formGroup]="ordemForm" novalidate>
+      <div class="row margin-top-5" *ngIf="ordem?.cliente">
+        <div class="col-md-2 col-sm-6">
+          <input class="form-control" disabled="true" formControlName="cpf" [(ngModel)]=ordem.cliente.cpf placeholder="CPF">
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <input class="form-control" disabled="true" formControlName="nome" [(ngModel)]=ordem.cliente.nome placeholder="Nome">
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <input class="form-control" disabled="true" formControlName="email" [(ngModel)]=ordem.cliente.email placeholder="E-mail">
+        </div>
+        <div class="col-md-2 col-sm-6">
+          <input class="form-control" disabled="true" formControlName="telefone" [(ngModel)]=ordem.cliente.telefone placeholder="Telefone">
+        </div>
+      </div>
+      <div class="row margin-top-5" *ngIf="ordem?.veiculo" >
+        <div class="col-md-2 col-sm-6">
+          <input class="form-control" disabled="true" formControlName="placa" [(ngModel)]=ordem.veiculo.placa placeholder="Placa">
+        </div>
+        <div class="col-md-2 col-sm-6">
+          <input class="form-control" disabled="true" formControlName="modelo" [(ngModel)]=ordem.veiculo.modelo placeholder="Modelo">
+        </div>
+        <div class="col-md-2 col-sm-6">
+          <input class="form-control" disabled="true" formControlName="fabricante" [(ngModel)]=ordem.veiculo.fabricante placeholder="Fabricante">
+        </div>
+      </div>
+    </form>
+    <div class="row margin-top-5" >
+      <div class="col-md-6 float-md-left" >
+        <div class="row" *ngFor="let produto of ordem?.produtos">
+          <div class="client-cars-list float-md-left">
+            <span class="client-cars-list-text">{{produto.nome}} - {{produto.valor | currency: 'BRL': true}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 float-md-right" >
+        <div class="row" *ngFor="let servico of ordem?.servicos">
+        <div class="client-cars-list float-md-right">
+          <span class="client-cars-list-text">{{servico.nome}} - {{servico.valor | currency: 'BRL': true}}</span>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="row margin-top-5">
+      <div class="col-md-12 col-xs-12 text-center">
+        <button (click)="btnSalvar()" class="btn btn-success" *ngIf="ordem?.status.id==1"
+          [disabled]="!ordemForm.valid">
+          <i class="fa fa-floppy-o"></i>&nbsp;&nbsp;APROVAR OS
+        </button>
+      </div>
+    </div>
+  </section>
+</section>
+<!-- FIM DO CONTEUDO-->

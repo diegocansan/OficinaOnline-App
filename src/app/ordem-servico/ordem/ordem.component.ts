@@ -5,7 +5,8 @@ import {NotificationService} from '../../shared/messages/notification.service'
 import {Ordem} from './ordem.model'
 import {OrdemService} from '../ordemservico.service'
 import {ConfirmModalComponent} from '../../shared/confirm-modal/confirm-modal.component'
-import { DialogService } from "ng2-bootstrap-modal";
+import {DialogService } from "ng2-bootstrap-modal";
+import {Usuario} from '../../usuarios/usuario/usuario.model'
 
 
 @Component({
@@ -25,6 +26,7 @@ import { DialogService } from "ng2-bootstrap-modal";
 export class OrdemComponent implements OnInit {
 
   ordemState = 'ready'
+  usuario: Usuario
 
   @Input() ordem: Ordem
   @Output() deletado: EventEmitter<any> = new EventEmitter();
@@ -66,4 +68,12 @@ export class OrdemComponent implements OnInit {
       return new Date(dateStr).toJSON()
     }
 
+    usuarioAdminsitrador(): boolean
+    {
+        if(localStorage.getItem('currentUser') != null){
+          this.usuario = JSON.parse(localStorage.getItem('currentUser'))
+          return this.usuario.id == "5"
+        }
+        return false
+    }
 }

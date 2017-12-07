@@ -30,6 +30,7 @@ import { OrdensAndamentoClienteComponent } from './ordem-servico/ordem-servico-c
 import { OrdensAprovadasClienteComponent } from './ordem-servico/ordem-servico-cliente/ordens-aprovadas-cliente.component';
 import { OrdensConcluidasClienteComponent } from './ordem-servico/ordem-servico-cliente/ordens-concluidas-cliente.component';
 import { OrdensPendentesClienteComponent } from './ordem-servico/ordem-servico-cliente/ordens-pendentes-cliente.component';
+import { DetalheOrdemComponent } from './ordem-servico/ordem-servico-cliente/detalhe-ordem/detalhe-ordem.component';
 
 
 
@@ -75,7 +76,7 @@ export const ROUTES: Routes = [
   {path: 'mantemVeiculo', component: CadastroVeiculoComponent, canActivate:[AuthGuard]},
   {path: 'mantemVeiculo/:id', component: CadastroVeiculoComponent, canActivate:[AuthGuard]},
 
-  {path: 'cliente/ordemServico', component: OrdemServicoClienteComponent, canActivate:[AuthGuard],
+  {path: 'ordemServicoCliente', component: OrdemServicoClienteComponent, canActivate:[AuthGuard],
     children: [
     {path: '', redirectTo: 'pendentes', pathMatch: 'full'},
     {path: 'pendentes', component: OrdensPendentesClienteComponent, canActivate:[AuthGuard]},
@@ -84,7 +85,8 @@ export const ROUTES: Routes = [
     {path: 'concluidas', component: OrdensConcluidasClienteComponent, canActivate:[AuthGuard]}
     ]
   },
-  {path: 'cliente/detalheOrdem/:id', component: CadastroOrdemServicoComponent, canActivate:[AuthGuard]},
+
+  {path: 'detalheOrdem/:id', component: DetalheOrdemComponent, canActivate:[AuthGuard]},
 
 
 

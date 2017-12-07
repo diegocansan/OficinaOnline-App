@@ -53,7 +53,8 @@ import { OrdensAndamentoClienteComponent } from './ordem-servico/ordem-servico-c
 import { OrdensAprovadasClienteComponent } from './ordem-servico/ordem-servico-cliente/ordens-aprovadas-cliente.component';
 import { OrdensConcluidasClienteComponent } from './ordem-servico/ordem-servico-cliente/ordens-concluidas-cliente.component';
 import { OrdensPendentesClienteComponent } from './ordem-servico/ordem-servico-cliente/ordens-pendentes-cliente.component';
-
+import { DetalheOrdemComponent } from './ordem-servico/ordem-servico-cliente/detalhe-ordem/detalhe-ordem.component';
+import { OrdemClienteComponent } from './ordem-servico/ordem-servico-cliente/ordemCliente.component'
 
 
 @NgModule({
@@ -92,6 +93,8 @@ import { OrdensPendentesClienteComponent } from './ordem-servico/ordem-servico-c
     OrdensAndamentoClienteComponent,
     OrdensConcluidasClienteComponent,
     OrdensPendentesClienteComponent,
+    DetalheOrdemComponent,
+    OrdemClienteComponent
 
    ],
   imports: [
