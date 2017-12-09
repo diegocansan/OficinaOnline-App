@@ -88,9 +88,8 @@ export const ROUTES: Routes = [
 
   {path: 'detalheOrdem/:id', component: DetalheOrdemComponent, canActivate:[AuthGuard]},
 
-
-
   {path: 'about', loadChildren: './about/about.module#AboutModule', canActivate:[AuthGuard]},
 
   {path: '**', component: NotFoundComponent, canActivate:[AuthGuard]}
+
 ]

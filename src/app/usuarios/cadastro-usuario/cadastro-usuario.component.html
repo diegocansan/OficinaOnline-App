@@ -22,7 +22,34 @@
       </div>
       <!-- /.row -->
     </form>
-    <div class="row">
+    <div class="row margin-top-5">
+      <div class="col-md-4">
+          <input [(ngModel)]="nomeClienteSelecionado"
+           [typeahead]="dataSourceClientes"
+           (typeaheadLoading)="changeClienteTypeaheadLoading($event)"
+           (typeaheadNoResults)="changeClienteTypeaheadNoResults($event)"
+           (typeaheadOnSelect)="typeaheadClienteOnSelect($event)"
+           [typeaheadOptionsLimit]="10"
+           typeaheadOptionField="nome"
+           placeholder="Buscar cliente por nome"
+           class="form-control"
+           [ngModelOptions]="{standalone: true}">
+           <div *ngIf="clienteTypeaheadLoading===true">Loading...</div>
+           <div *ngIf="clienteTypeaheadNoResults===true">&#10060; Nenhum cliente encontrado!</div>
+       </div>
+       <div class="col-md-4" *ngIf="usuario?.cliente">
+         <button class="btn btn-danger" (click)="showModal()">Remover Cliente </button>
+       </div>
+    </div>
+    <div class="row margin-top-5" *ngIf="usuario?.cliente">
+      <div class="col-md-2 col-sm-6">
+        <input class="form-control" disabled="true" [(ngModel)]=usuario.cliente.cpf placeholder="CPF">
+      </div>
+      <div class="col-md-4 col-sm-6">
+        <input class="form-control" disabled="true" [(ngModel)]=usuario.cliente.nome placeholder="Nome">
+      </div>
+    </div>
+    <div class="row margin-top-5">
       <div class="col-lg-12 col-xs-12 text-center">
         <button (click)="btnSalvar(usuarioForm.value)" class="btn btn-success"
           [disabled]="!usuarioForm.valid">
