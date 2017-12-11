@@ -13,6 +13,8 @@ import {Observable} from 'rxjs/Observable'
 import {Ordem} from '../ordem/ordem.model'
 import {OrdemService} from '../ordemservico.service'
 
+import {Usuario} from '../../usuarios/usuario/usuario.model'
+
 @Component({
   selector: 'oo-ordens-andamento-cliente',
   templateUrl: './ordem-servico-cliente-lista.component.html'
@@ -20,11 +22,7 @@ import {OrdemService} from '../ordemservico.service'
 
 export class OrdensAndamentoClienteComponent implements OnInit {
   ordens: Ordem[] = []
-  totalItems = 1;
-  currentPage =1;
-  smallnumPages = 0;
-  filter: string
-
+  usuario: Usuario
   constructor(private ordemService: OrdemService) { }
 
   ngOnInit() {
@@ -36,22 +34,12 @@ export class OrdensAndamentoClienteComponent implements OnInit {
   }
 
   atualizar(){
-    this.ordemService.buscarPorStatus('3')
-      .subscribe(ordens => this.ordens = ordens)
-    this.setPageNumber()
+    if(localStorage.getItem('currentUser') != null){
+      this.usuario = JSON.parse(localStorage.getItem('currentUser'))
+
+      this.ordemService.buscarOrdemCliente(this.usuario.cliente.id,2)
+        .subscribe(ordens => this.ordens = ordens)
+    }
   }
 
-  setPage(pageNo: number): void {
-    this.currentPage = pageNo;
-  }
-
-  setPageNumber() {
-    if(this.ordens && this.ordens.length > 0)
-      this.totalItems = this.ordens.length
-  }
-
-  pageChanged(event: any): void {
-    console.log('Page changed to: ' + event.page);
-    console.log('Number items per page: ' + event.itemsPerPage);
-  }
 }

@@ -13,6 +13,8 @@ import {Observable} from 'rxjs/Observable'
 import {Ordem} from '../ordem/ordem.model'
 import {OrdemService} from '../ordemservico.service'
 
+import {Usuario} from '../../usuarios/usuario/usuario.model'
+
 @Component({
   selector: 'oo-ordens-pendentes-clientes',
   templateUrl: './ordem-servico-cliente-lista.component.html'
@@ -20,7 +22,7 @@ import {OrdemService} from '../ordemservico.service'
 
 export class OrdensPendentesClienteComponent implements OnInit {
   ordens: Ordem[] = []
-
+  usuario: Usuario
   constructor(private ordemService: OrdemService) { }
 
   ngOnInit() {
@@ -32,7 +34,12 @@ export class OrdensPendentesClienteComponent implements OnInit {
   }
 
   atualizar(){
-    this.ordemService.buscarPorStatus('1')
+    if(localStorage.getItem('currentUser') != null){
+      this.usuario = JSON.parse(localStorage.getItem('currentUser'))
+
+    this.ordemService.buscarOrdemCliente(this.usuario.cliente.id,0)
       .subscribe(ordens => this.ordens = ordens)
+
+    }
   }
 }

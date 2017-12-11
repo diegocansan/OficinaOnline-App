@@ -34,12 +34,6 @@ export class OrdemService {
                       .catch(ErrorHandler.handleError)
     }
 
-    buscarPorClienteStatus(clienteId: string): Observable<Ordem[]>{
-      return this.http.get(`${REST_API}/ordemServicos/cliente/${clienteId.toString()}`)
-                      .map(response => response.json())
-                      .catch(ErrorHandler.handleError)
-    }
-
     byId(id: string): Observable<Ordem>{
       return this.http.get(`${REST_API}/ordemServicos/${id}`)
         .map(response => response.json())
@@ -74,4 +68,16 @@ export class OrdemService {
                               .map(response => response.ok)
                               .catch(ErrorHandler.handleError)
     }
+
+
+    /* BUSCA ORDEM SERVICO VISAO CLIENTE */
+    buscarOrdemCliente(clienteId: string, statusIndex: number): Observable<Ordem[]>{
+      let status: string[] = ["pendentes","aprovadas","emandamento","concluidas"]
+      
+      return this.http.get(`${REST_API}/ordemServicos/${status[statusIndex].toString()}/cliente/${clienteId.toString()}`)
+                      .map(response => response.json())
+                      .catch(ErrorHandler.handleError)
+    }
+
+
 }
