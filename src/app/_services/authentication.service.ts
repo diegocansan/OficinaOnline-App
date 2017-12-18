@@ -16,7 +16,7 @@ export class AuthenticationService {
                 private router: Router) { }
 
     login(username: string, password: string) {
-        this.usuario = {id:null,login:username,senha:password,token:""}
+        this.usuario = {id:null,login:username,senha:password,cliente: null}
 
         const headers = new Headers()
         headers.append('Content-Type', 'application/json')
